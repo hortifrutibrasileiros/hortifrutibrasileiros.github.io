@@ -54,9 +54,9 @@
     visibility: hidden;
     z-index: -10;
 }
-::placeholder { color: #a1a1a1; opacity: 1; }
-:-ms-input-placeholder { color: #a1a1a1; }
-::-ms-input-placeholder { color: #a1a1a1; }
+textarea#observacoes::placeholder { color: #a1a1a1; opacity: 1; font-weight: 100; }
+textarea#observacoes:-ms-input-placeholder { color: #a1a1a1; font-weight: 100; }
+textarea#observacoes::-ms-input-placeholder { color: #a1a1a1; font-weight: 100; }
 
 * {
     user-select: none;
@@ -76,11 +76,13 @@ input, select {
 /* STYLE */
 
 /* head area */
+#main_content #top_ad, .info {
+    background: linear-gradient(to right, #f9f9f9, #ffffff, #f9f9f9);
+}
 #main_content #top_ad {
     height: fit-content;
     padding: 15px;
     margin: auto;
-    background: linear-gradient(to right, transparent, white, transparent);
     font-weight: 800;
     font-size: 90%;
     position: relative;
@@ -115,7 +117,6 @@ input, select {
     background-size: auto 100%;
     background-repeat: no-repeat;
     background-position: center left;
-    /* border-right: 1px solid rgb(0 0 0 / 10%); */
     z-index: 1;
     position: absolute;
 }
@@ -279,6 +280,9 @@ span.fa.fa-spin.fa-rotate-right {
 	display: none;
 	transition: 0.3s;
 	padding-bottom: 68px;
+	max-width: 1000px;
+	position: relative;
+	margin: auto;
 }
 body {
     background-color: #f9f9f9;
@@ -444,8 +448,8 @@ footer #social-medias {
 }
 input[type="submit"] {
     height: 30px;
+    width: calc(100% - 40px);
     background-color: #ffffff;
-    width: fit-content;
     font-size: 75%;
     font-weight: 800;
     border-radius: 17px;
@@ -456,7 +460,7 @@ input[type="submit"] {
     left: 0;
     right: 0;
     border: 2px solid rgb(107 148 87);
-    padding: 0 15px;
+    /* padding: 0 15px; */
     color: rgb(107 148 87);
     transition: .3s;
 }
@@ -525,7 +529,8 @@ input[type="submit"]:hover {
     font-weight: 500;
 }
 .table {
-	margin: 95px 0 35px 0;
+	margin: 135px auto 35px auto;
+	max-width: 600px;
 }
 .table > .product {
 	background: #fff;
@@ -681,6 +686,12 @@ select {
 
 #aba-header {
     height: 60px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #f9f9f9;
+    z-index: 1;
 }
 #aba-header .title {
     font-weight: 600;
@@ -739,6 +750,7 @@ iframe {
     height: calc(45px + 40px);
     position: fixed;
     bottom: 0;
+    max-width: 1000px;
 }
 .buttons .checkout, .send_order {
     background: #709a5c;
@@ -753,8 +765,9 @@ iframe {
     right: 0;
     line-height: 45px;
     z-index: 1;
+    max-width: 250px;
 }
-.checkout.off {
+.checkout.disabled, .checkout.off {
     background-color: #999;
 }
 a.send_order {
@@ -769,13 +782,14 @@ a.send_order {
     z-index: 9995;
     top: 0;
     bottom: 0;
+    left: 0;
 }
 a#whatsapp {
     color: #fff;
 }
 .checkit {
     position: fixed;
-    top: 85px;
+    top: 135px;
     margin: auto;
     left: 0;
     right: 0;
@@ -823,7 +837,6 @@ a#whatsapp {
     text-align: center;
     font-size: 90%;
     color: rgb(0 0 0 / 60%);
-    background: linear-gradient(to right, transparent, white, transparent);
 }
 .info .ic-info {
     width: 100%;
@@ -876,12 +889,10 @@ input::-webkit-inner-spin-button {
     text-align: center;
     box-sizing: border-box;
     width: 33.3%;
-    font-size: 86%;
+    font-size: 90%;
     background: transparent;
-    font-weight: 700;
+    font-weight: 800;
     color: rgb(0 0 0 / 60%);
-    border-right: 1px solid rgb(0 0 0 / 10%);
-    border-left: 1px solid rgb(0 0 0 / 10%);
   }
   
 .set-value .minus {
@@ -961,20 +972,27 @@ input::-webkit-inner-spin-button {
 .container {
     position: fixed;
     width: 100%;
-    height: 75px;
+    height: 65px;
     background: #f9f9f9;
     z-index: 99;
-    top: 0;
+    top: 60px;
+    max-width: 1000px;
+    margin: auto;
+    left: 0;
+    right: 0;
 }
 .progressbar {
     counter-reset: step;
-    margin-top: 15px;
     padding: 0;
     list-style-type: none;
     position: absolute;
     z-index: 1;
     width: 100%;
     height: 100%;
+    max-width: 500px;
+    margin: auto;
+    left: 0;
+    right: 0;
 }
 .progressbar li {
     list-style-type: none;
@@ -1095,10 +1113,10 @@ input::-webkit-inner-spin-button {
         padding: 15px;
     }
     #main_content #logo {
-        width: 100px;
+    height: 80px;
     }
     header #right {
-        width: calc(100% - 130px);
+        width: calc(100% - 115px);
         height: calc(100% - 30px);
         right: 15px;
     }
@@ -1114,6 +1132,7 @@ input::-webkit-inner-spin-button {
     }
     #search button {
         width: 35px;
+        font-size: 14px;
     }
     #search input {
         width: calc(100% - 55px);
@@ -1122,7 +1141,8 @@ input::-webkit-inner-spin-button {
     a.bag {
         width: 35px;
         height: 35px;
-        background-size: 14px;
+        line-height: 35px;
+        font-size: 14px;
     }
     header #search {
         width: calc(100% - 60px);
@@ -1140,11 +1160,8 @@ input::-webkit-inner-spin-button {
         margin: 5px;
     }
     input[type="submit"] {
-        height: 34px;
-        width: calc(100% - 20px);
         font-size: 70%;
-        border-radius: 17px;
-        margin: 10px;
+        width: calc(100% - 20px);
     }
     #catalog .product .picture {
         height: 50px;
@@ -1239,7 +1256,7 @@ header::after, .container::after {
 
 .td::before, .checkit::before {
     width: 75%;
-    height: 80%;
+    height: 60%;
     bottom: -5px;
     filter: blur(10px);
     opacity: .2;
@@ -1247,7 +1264,7 @@ header::after, .container::after {
 }
 
 .checkit::after {
-    content: 'Alguns campos são obrigatórios!';
+    content: 'Alguns campos são necessários!';
     position: absolute;
     background: #fec282;
     top: 0;
@@ -1298,7 +1315,7 @@ input[type="submit"]:active {
 #lines .input::before {
     position: absolute;
     background: white;
-    top: -14px;
+    top: -12px;
     left: 5px;
     padding: 0 5px;
     font-weight: 600;
@@ -1314,7 +1331,7 @@ input[type="submit"]:active {
     content: 'Endereço';
 }
 #lines .input.numero::before {
-    content: 'Nº';
+    content: 'N\00B0';
 }
 #lines .input.complemento::before {
     content: 'Complemento/referência';
