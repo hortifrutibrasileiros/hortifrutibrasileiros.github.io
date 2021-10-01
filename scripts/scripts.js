@@ -74,13 +74,6 @@ $(document).ready(function() {
     });
 });
 
-
-$('a.bag').click(function() {
-    $('iframe').attr( 'src', function ( i, val ) { return val; });
-    $('.iframe').addClass('open');
-    $('.fade').show();
-});
-
 var fixIt = $('header').offset().top;
 $(window).scroll(function() {
     var currentScroll = $(window).scrollTop();
