@@ -322,7 +322,7 @@ $(window).load(function(){
 function mountLayout(index, data) {
   var totalValueTemp = parseFloat(data.unity_price) * parseInt(data.quantity);
   
-  var $layout = "<script>$('#tds').removeClass('hide');$('.tf.summary').removeClass('hide');$('.progressbar .order').addClass('active');$('.bag_empty').hide();$('.buttons .checkout.disabled').addClass('hide');$('.buttons .checkout.a').removeClass('hide');<"+"/script><section class='td' id='product-"+index+"'>"+
+  var $layout = "<script>$('#tds').removeClass('hide');$('.tf.summary').removeClass('hide');$('.order').addClass('active');$('.bag_empty').hide();$('.checkout.disabled').addClass('hide');$('.checkout.a').removeClass('hide');<"+"/script><section class='td' id='product-"+index+"'>"+
                   "<a class='hide'>%20"+data.quantity+"%20x%20</a>"+
                   "<div class='product'>"+
                     "<div class='pic'><img src='../images/products/"+index+".jpg' alt='"+data.product_name+"'></div>"+
