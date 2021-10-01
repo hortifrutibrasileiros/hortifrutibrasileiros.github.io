@@ -1280,6 +1280,9 @@ header::after, .container::after {
     font-weight: 500;
     color: #fff;
 }
+.checkout.d::before {
+    content: 'enviar pedido';
+}
 
 
 
