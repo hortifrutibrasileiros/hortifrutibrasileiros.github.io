@@ -228,7 +228,7 @@ $('.checkout.b').click(function(){
   $(".checkout.b").addClass('hide');
   $(".pageb").addClass('hide');
   $(".pagec").removeClass('hide');
-  $(".delme").remove();
+  $(".delme, #scripts").remove();
   var str = $('#tds').text().replace(/ /g, '+');
   $('#tds').text(str);
   $("li.confirmation").addClass("active");
@@ -322,7 +322,7 @@ $(window).load(function(){
 function mountLayout(index, data) {
   var totalValueTemp = parseFloat(data.unity_price) * parseInt(data.quantity);
   
-  var $layout = "<script>$('#tds').removeClass('hide');$('.tf.summary').removeClass('hide');$('.order').addClass('active');$('.bag_empty').hide();$('.checkout.disabled').addClass('hide');$('.checkout.a').removeClass('hide');<"+"/script><section class='td' id='product-"+index+"'>"+
+  var $layout = "<div id='scripts'><script>$('#tds').removeClass('hide');$('.tf.summary').removeClass('hide');$('.order').addClass('active');$('.bag_empty').hide();$('.checkout.disabled').addClass('hide');$('.checkout.a').removeClass('hide');<"+"/script></div><section class='td' id='product-"+index+"'>"+
                   "<a class='hide'>%20"+data.quantity+"%20x%20</a>"+
                   "<div class='product'>"+
                     "<div class='pic'><img src='../images/products/"+index+".jpg' alt='"+data.product_name+"'></div>"+
