@@ -1,0 +1,373 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Cesta-Feira: Cart Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="loader"><div><span class="fa fa-spin fa-rotate-right"></span></div></div>
+<div id="content">
+  
+  <div id="aba-header">
+    <div class="title">Sua sacola</div>
+ </div>
+ 
+  <div class="container">
+    <ul class="progressbar">
+        <li class="order">pedido</li>
+        <li class="delivery">entrega</li>
+        <li class="confirmation">confirmação</li>
+  </ul>
+  </div>
+
+  <div class="table">
+    <div class="fullscreen bag_empty">
+      <p>Sua sacola está vazia.</p>
+      <div class="sticker"></div>
+      <div class="info">
+        <div class="ic-info"></div>
+        <p>Na página inicial, escolha a quantidade do produto que tem interesse para o adicioná-lo à sua sacola.<br>Aqui você poderá ver o total e finalizar seu pedido.</p>
+      </div>
+    </div>
+    <div id="tds" class="pagea hide"></div>
+
+    <div class="info to_free pagea hide">
+      <div class="ic-info"></div>
+      <p>Adicionando mais <b>R$ <span></span></b> em produtos a entrega é <a class="free">GRÁTIS</a>.</p>
+    </div>
+
+    <div class="tf summary pagea hide">
+      <div id="title">Resumo do pedido</div>
+      <div id="lines">
+        <div class="line"><div class="order">Pedido</div><div class="order value" id="value"></div></div>
+        <div class="line"><div class="order">Entrega</div><div class="about_delivery">5,00</div></div>
+        <div class="line total"><div class="order">Total</div><div class="total value" id="total-value"></div></div>
+      </div>
+    </div>
+
+    <div class="tf address pageb hide">
+      <div id="title">Endereço de entrega</div>
+      <div id="lines">
+        <div class="input cidade"><select id="cidade"><option>Campina Grande</option><option>Lagoa Seca</option></select></div>
+        <div class="input bairro"><input id="bairro" class="required" type="text"></div>
+        <div class="input endereco"><input id="endereco" class="required" type="text"></div>
+        <div class="input numero"><input id="numero" class="required" type="number"></div>
+        <div class="input complemento"><input id="complementoreferencia" type="text"></div>
+      </div>
+    </div>
+
+    <div class="tf infos pageb hide">
+      <div id="title">Suas informações</div>
+      <div id="lines">
+        <div class="input nomesobrenome"><input id="nomesobrenome" class="required" type="text"></div>
+        <a class="obs hide">OBS%3A%20%22</a>
+        <div class="input observacoes"><textarea id="observacoes" class="observacoes" placeholder="Ex.: Desejo tomates apenas verdes."></textarea></div>
+        <a class="obs hide">%22</a>
+      </div>
+    </div>
+
+    <div class="tf payment pageb hide">
+      <div id="title">Meio de pagamento</div>
+      <div id="lines">
+        <select id="pagamento">
+          <option>PIX</option>
+          <option>Transferência</option>
+          <option>Boleto</option>
+          <option>Cartão de débito</option>
+          <option>Cartão de crédito</option>
+          <option>Em dinheiro</option>
+        </select>
+      </div>
+    </div>
+    
+    
+    <div class="fullscreen all_ready pagec hide">
+      <p>Tudo pronto!</p>
+      <div class="sticker"></div>
+      <div class="info">
+        <div class="ic-info"></div>
+        <p>Clicando em <b>enviar pedido</b> abaixo, seu pedido será encaminhado para nosso WhatsApp onde um atendente irá receber seu pedido.</p>
+      </div>
+    </div>
+
+    <div class="fade"></div>
+  </div>
+  
+    <div class="window timeover hide">
+      <div class="title">ATENÇÃO</div>
+      <div class="message">
+        <p>Prezado(a) cliente, os pedidos a serem entregues amanhã só podem ser recebidos até às 22 horas do dia de hoje.</p>
+        <p>Sua entrega será agendada para a manhã do dia útil seguinte.</p>
+      </div>
+      <div class="choice">
+        <div class="cancel">CANCELAR</div><div class="continue">CONTINUAR</div>
+      </div>
+    </div>
+    <div class="window weekover hide">
+      <div class="title">ATENÇÃO</div>
+      <div class="message">Os pedidos feitos hoje só poderão ser entregues na manhã da segunda-feira.</div>
+      <div class="choice">
+        <div class="cancel">CANCELAR</div><div class="continue">CONTINUAR</div>
+      </div>
+    </div>
+    <div class="checkit hide"></div>
+    <div class="buttons">
+      <div class="checkout off"></div>
+      <div class="checkout a hide"></div>
+      <div class="checkout disabled hide"></div>
+      <div class="checkout b hide"></div>
+      <div class="link"></div>
+    </div>
+</div>
+
+<script src="../scripts/jquery.min.js"></script>
+<script src="../scripts/jstorage.min.js"></script>
+<script src="../scripts/sacola.js"></script>
+<script>
+var hour = (new Date()).getHours();
+var day = (new Date()).getDay();
+$(document).ready(function() {
+  if (hour > 22 && day != 5 && day != 6){
+    $(".checkout.a").click(function() {
+      $('.window.timeover').removeClass('hide');
+      $('.fade').show();
+    });
+  } else if (day == 5 || day == 6){
+    $(".checkout.a").click(function() {
+      $('.window.weekover').removeClass('hide');
+      $('.fade').show();
+    });
+  } else {
+    $(".checkout.a").click(function() {
+      $(".pageb, .checkout.disabled").removeClass('hide');
+      $(".pagea, .checkout.a").addClass('hide');
+      $("html, body").animate({ scrollTop: 0 }, "slow");
+      $("li.delivery").addClass("active");
+    });
+  }
+});
+
+$(".window .choice .continue").click(function() {
+  $(".window").addClass('hide');
+  $('.fade').hide();
+  $(".pageb, .checkout.disabled").removeClass('hide');
+  $(".pagea, .checkout.a").addClass('hide');
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+  $("li.delivery").addClass("active");
+});
+
+$(".window .choice .cancel").click(function() {
+  $(".window").addClass('hide');
+  $('.fade').hide();
+});
+
+$("input").keyup(function() {
+  var $emptyFields = $('input.required').filter(function() {
+      return $.trim(this.value) === "";
+  });
+  if (!$emptyFields.length) {
+    $(".checkout.disabled").addClass('hide');
+    $(".checkout.b").removeClass('hide');
+  }
+});
+
+$('.checkout.disabled').click(function(){
+    if( !$('#bairro').val() ) {
+      $('.checkit').removeClass('hide');
+      $('#bairro').addClass('warning');
+      setTimeout(function(){
+      $('.checkit').addClass('hide');
+      }, 3000);
+    }
+    if( !$('#endereco').val() ) {
+      $('.checkit').removeClass('hide');
+      $('#endereco').addClass('warning');
+      setTimeout(function(){
+      $('.checkit').addClass('hide');
+      }, 3000);
+    }
+    if( !$('#numero').val() ) {
+      $('.checkit').removeClass('hide');
+      $('#numero').addClass('warning');
+      setTimeout(function(){
+      $('.checkit').addClass('hide');
+      }, 3000);
+    }
+    if( !$('#nomesobreome').val() ) {
+      $('.checkit').removeClass('hide');
+      $('#nomesobrenome').addClass('warning');
+      setTimeout(function(){
+      $('.checkit').addClass('hide');
+      }, 3000);
+    }
+});
+
+$("input.required").blur("click keydown", function(event) {
+      if( $(this).val().length === 0 ) {
+          $(this).addClass('warning');
+          $(".checkout.disabled").removeClass('hide');
+          $(".checkout.b").addClass('hide');
+      }
+  });
+  $("input.required").blur("click keydown", function(event) {
+    if( $(this).val().length >= 1 ) {
+        $(this).removeClass('warning');
+    }
+});
+
+$('.checkout.b').click(function(){
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+  $(".checkout.b").addClass('hide');
+  $(".pageb").addClass('hide');
+  $(".pagec").removeClass('hide');
+  $(".delme").remove();
+  var str = $('#tds').text().replace(/ /g, '+');
+  $('#tds').text(str);
+  $("li.confirmation").addClass("active");
+  var time = new Date();
+  var month = time.getMonth()+1;
+  var day = time.getDate();
+  var data = day + '/' +
+    ((''+month).length<2 ? '0' : '') + month + '/' +
+    ((''+day).length<2 ? '0' : '') + time.getFullYear();
+  var hora = time.getHours() + ":" + time.getMinutes();
+  var id = 10000 + Math.floor(Math.random() * 60000);
+  var nomesobrenome = $('#nomesobrenome').val();
+  var pedidos = $('#tds').text();
+  var totalvalue = $('#total-value').text();
+  var observacoes = $('#observacoes').val();
+  var pagamento = $('#pagamento').val();
+  var endereco = $('#endereco').val();
+  var numero = $('#numero').val();
+  var bairro = $('#bairro').val();
+  var cidade = $('#cidade').val();
+  var complementoReferencia = $('#complementoreferencia').val();
+ 
+ $('.link').html('<a class="checkout d" target="_black" href="https://api.whatsapp.com/send?phone=558388353115&text='+
+                 '```–%20–%20–%20–%20–%20–%20–%20–%20–%20–%20–%0A'+
+                 '%20H%20O%20R%20T%20I%20F%20R%20U%20T%20I%0A'+
+                 '%20%20•••BRASILEIROS•••%0A'+
+                 '–%20–%20–%20–%20–%20–%20–%20–%20–%20–%20–%0A'+
+                 '%20%20'+data+'%20%20'+hora+'%0A'+
+                 '%20%20PEDIDO%20ID%20-%20'+id+'%0A'+
+                 '–%20–%20–%20–%20–%20–%20–%20–%20–%20–%20–%0A'+
+                 'QTD%2E%20PRODUTO%0A'+
+                 '–%20–%20–%20–%20–%20–%20–%20–%20–%20–%20–%0A'+
+                 pedidos+
+                 '%0ATotal%3A%20R$%20'+totalvalue+'%0A'+
+                 '–%20–%20–%20–%20–%20–%20–%20–%20–%20–%20–%0A'+
+                 '%20%20DADOS DO CLIENTE%0A'+
+                 '–%20–%20–%20–%20–%20–%20–%20–%20–%20–%20–%0A'+
+                 'NOME%3A%20'+nomesobrenome+'%0A'+
+                 'ENDEREÇO%3A%0A'+
+                 endereco+'%2C%20'+numero+'%0A'+
+                 bairro+'%20-%20'+cidade+'%0A'+
+                 complementoReferencia+'%0A'+
+                 'FORMA%20DE%20PAGAMENTO%3A%20'+pagamento+'%0A'+
+                 observacoes+'%0A'+
+                 '–%20–%20–%20–%20–%20–%20–%20–%20–%20–%20–```">'+
+                 '</a>');
+  });
+
+</script>
+<script type="application/javascript">
+
+$(window).load(function(){
+	$('#loader').fadeOut(500);
+	$('#content').fadeIn(500);
+});
+
+  function initListaOrcamento() {
+    var products = $.CestaFeira({
+        debug: true
+      }).getItems(),
+      totalValueTemp = 0,
+      $cartItems = $('#tds');
+
+    if (!products) {
+      console.log("Sua sacola está vazia!");
+      return;
+    }
+
+    function updateTotalValue() {
+      var totalValue = 0;
+      var deliveryValue = 5;
+      $.each($('[data-item-total-value]'), function (index, item) {
+        totalValue += $(item).data('item-total-value');
+      });
+      if (totalValue >= 50) {
+        $('#total-value').html(parseFloat(totalValue).toFixed(2).replace(".",","));
+        $('.about_delivery').text('ENTREGA GRÁTIS');
+        $('.about_delivery').addClass('free');
+        $('.to_free').addClass('hide');
+      } else if (totalValue <= 0) {
+        $('.to_free').addClass('hide');
+      } else {
+        var faltaQuanto = 50 - totalValue;
+        $('#total-value').html(parseFloat(deliveryValue + totalValue).toFixed(2).replace(".",","));
+        $('.to_free span').html(parseFloat(faltaQuanto).toFixed(2).replace(".",","));
+        $('.to_free').removeClass('hide');
+      }
+      $('#value').html(parseFloat(totalValue).toFixed(2).replace(".",","));
+    }
+
+function mountLayout(index, data) {
+  var totalValueTemp = parseFloat(data.unity_price) * parseInt(data.quantity);
+  
+  var $layout = "<script>$('#tds').removeClass('hide');$('.tf.summary').removeClass('hide');$('.progressbar .order').addClass('active');$('.bag_empty').hide();$('.buttons .checkout.disabled').addClass('hide');$('.buttons .checkout.a').removeClass('hide');<"+"/script><section class='td' id='product-"+index+"'>"+
+                  "<a class='hide'>%20"+data.quantity+"%20x%20</a>"+
+                  "<div class='product'>"+
+                    "<div class='pic'><img src='../images/products/"+index+".jpg' alt='"+data.product_name+"'></div>"+
+                    "<div class='name'>"+data.product_name+"</div>"+
+                  "</div>"+
+                  "<div class='delme quant center'>"+data.quantity+"</div>"+
+                  "<div class='delme total center value' data-item-total-value='"+totalValueTemp+"'>"+parseFloat(totalValueTemp).toFixed(2)+"</div>"+
+                  "<div class='center remove'><a href='javascript:;' class='ic-close' data-cesta-feira-delete-item='"+index+"'></a></div>"+
+                  "<a class='hide'>%0A</a></section>";
+  $cartItems.append($layout);
+}
+
+    $.each(products, function (index, value) {
+      mountLayout(index, value);
+    });
+    updateTotalValue();
+
+    $(document).on('click', 'a[data-cesta-feira-delete-item]', function(e) {
+      e.preventDefault();
+      var productId = $(this).data('cesta-feira-delete-item');
+      if($(document).on('cesta-feira-item-deleted')){
+        $('#product-'+productId).fadeOut(500, function() {
+          $(this).remove();
+          updateTotalValue();
+          location.reload();
+        });
+      }
+    });
+
+    $(document).on('cesta-feira-clear-basket', function (e) {
+      $('#tds section.td').each(function (index, value) {
+        $(value).fadeOut(500, function() {
+          $(this).remove();
+          updateTotalValue();
+        });
+      });
+    });
+
+  }
+
+  $(document).ready(function () {
+
+    initListaOrcamento();
+
+  });
+</script>
+</body>
+</html>
