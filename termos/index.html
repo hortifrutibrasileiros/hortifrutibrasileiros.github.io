@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Termos de uso| Hortifruti BRASILEIROS</title>
+  <meta name="author" content="Hortifruti BRASILEIROS">
+
+  <meta property="og:title" content="Termos | Hortifruti BRASILEIROS">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hortifrutibrs.com/">
+
+  <link rel="icon" href="../favicon.ico">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="full_content">
+        <div id="main_content">
+    
+        <div id="top_ad">
+            <div>FRETE GRÁTIS <span>nos pedidos partir de R$ 50</span></div>
+        </div>
+    
+        <header>
+            <a href="http://hortifrutibrasileiros.tk"><div id="logo"></div></a>
+            <div id="right">
+                <div id="search">
+                    <input type="text" placeholder="Buscar produto"/><button class="search"></button>
+                </div>
+                <div id="categories">
+                    <div class="categories">
+                        <div class="area">
+                            <div class="category todos pin">TODOS</div>
+                            <div class="category legumes">LEGUMES</div>
+                            <div class="category hortalicas">HORTALIÇAS</div>
+                            <div class="category frutas">FRUTAS</div>
+                            <div class="category outros">OUTROS</div>
+                        </div>
+                    </div>
+                    <div class="scroll"></div>
+                </div>
+                <a class="bag" data-cesta-feira-items-count></a>
+            </div>
+        </header>
+    <section>
+        <div class="page_title">TERMOS DE USO</div>
+        <ol id="termos">
+            <li>Os produtos
+              <ol>
+                <li>estão oferecidos de acordo com sua disponibilidade na nossa loja física;</li>
+                <li>estão dispostos na medida mínima de venda a varejo;</li>
+                <li>recebem o preço conforme seu valor vigente (ver <span>3.1</span>).</li>
+              </ol>
+            </li>
+            <li>Os pedidos
+              <ol>
+                <li>recebidos até as <span>22:00</span> são entregues na <span>manhã do dia útil seguinte</span>;</li>
+                <li>recebidos após as <span>22:01</span> são considerados pedidos do dia seguinte;
+                  <ol>
+                    <li>e entregues na <span>manhã útil posterior ao dia considerado</span>;</li>
+                  </ol>
+                  </li>
+                <li>recebidos em dias de sexta-feira e sábado serão entregues no dia útil seguinte - normalmente segunda-feira.</li>
+              </ol>
+            </li>
+            <li>Os preços
+              <ol>
+                <li>estão sujeitos à alterações todos os dias;</li>
+                <li>são atualizados entre as <span>22:01</span> e <span>23:59</span>, sendo efetivamente válidos no <span>dia posterior</span>;</li>
+                <li>nem sempre são exatos, dependendo das condições e disponibilidade do produto (ver <span>5.1</span>).</li>
+              </ol>
+            </li>
+            <li>As entregas
+              <ol>
+                <li>são realizadas com as medidas de higienização, preventivas ao COVID-19.</li>
+                <li>são feitas de <span>segunda à sexta-feira</span>, entre as <span>8:00</span> e <span>11:00</span> horas;</li>
+                <li>procederão de um aviso ao cliente, prévio a saída do entregador.</li>
+              </ol>
+            </li>
+            <li>O total
+              <ol>
+                <li>poderá ser alterado caso um ou mais produtos estiverem indisponíveis (ver <span>1.1</span>);
+                  <ol>
+                    <li>ou sua medida não parear ao preço dado.</li>
+                  </ol>
+                </li>
+                <li>
+                    só sofrerá alterações mediante ajuste de forma que o valor não ultrapasse ao inicial;
+                </li>
+                <li>
+                    caso precise sofrer uma alteração, será expressamente informado ao cliente.
+                </li>
+              </ol>
+            </li>
+          </ol>
+          
+        <footer>
+            <div id="social-medias">
+                <a target="_black" href="https://api.whatsapp.com/send?phone=558388353115&text=Olá%2C%20gostaria+de+tirar+uma+dúvida%2E%2E%2E">
+                    <div class="whatsapp"></div>
+                </a>
+                <a target="_black" href="https://www.instagram.com/brasileiroshortifruti/">
+                    <div class="instagram"></div>
+                </a>
+                <a target="_black" href="mailto:hortifrutibrasileiros@gmail.com">
+                    <div class="gmail"></div>
+                </a>
+            </div>
+            <hr />
+            <div class="right">© BRASILEIROS HORTIFRUTI 2021</div>
+            <div class="address">
+                <div>R. Dr. Vasconcelos, 988</div>
+                <div>Alto Branco - Campina Grande - PB</div>
+                <div>CNPJ:37.085.118/0001-70</div>
+            </div>
+        </footer>
+    </section>
+</div>
+<div class="iframe">
+    <div id="aba-header">
+        <div class="title">Sua sacola</div>
+        <div class="close fa fa-chevron-left"></div>
+    </div>
+    <iframe src="../sacola.html"></iframe>
+</div>
+</div>
+<div class="fade"></div>
+
+
+<script type="text/javascript" src="../scripts/jquery.min.js"></script>
+<script src="../scripts/scripts.js"></script>
+<script src="../scripts/jstorage.min.js"></script>
+<script src="../scripts/sacola.js"></script>
+<script type="application/javascript">
+  $( document ).ready(function() {
+    $.CestaFeira({
+      debug: false,
+      onItemAdded: function (item) {
+        console.log(item);
+      },
+      onItemUpdated: function (item) {
+        console.log(item);
+      }
+    });
+  });
+</script>
+</body>
+</html>
