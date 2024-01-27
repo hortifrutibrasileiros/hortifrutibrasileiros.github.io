@@ -1,0 +1,322 @@
+/* CONFIG STYLE */
+::-webkit-scrollbar {
+    background: transparent;
+    color: transparent;
+    width: 0;
+    display: none;
+    visibility: hidden;
+    z-index: -10;
+}
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background: transparent;
+    color: transparent;
+    display: none;
+    visibility: hidden;
+    z-index: -10;
+}
+
+* {
+    user-select: none;
+}
+a { text-decoration: none}
+button, iframe, input { border: none}
+input {
+    outline: none;
+    -webkit-appearance: none;
+    background-color: #e4ecdc;
+    caret-color: rgb(53, 156, 53);
+    box-sizing: border-box;
+    font-size: 16px;
+}
+input::placeholder {
+    font-size: 14px;
+}
+
+
+
+body {
+    margin: 0;
+    margin-top: 106px;
+    margin-bottom: 48px;
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    color: #191d17;
+}
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100px;
+    background: #ffffff;
+    border-top: 4px solid #d7e8cd;
+}
+header > div {
+    position: relative;
+    height: 58px;
+}
+header #concluir {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 78px;
+    background-color: #d7e8cd;
+    border-bottom-right-radius: 14px;
+}
+#concluir svg {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: #cbffb8;
+    padding: 12px;
+    border-radius: 14px;
+}
+header #search {
+    position: absolute;
+    left: 78px;
+    width: calc(100% - 78px - 48px - 48px);
+    height: 100%;
+}
+header #search svg {
+    position: absolute;
+}
+#search input {
+    height: calc(100% - 24px);
+    width: calc(100% - 24px);
+    border-radius: 14px;
+    margin: 12px 0 0 12px;
+}
+header .button {
+    position: absolute;
+    height: 100%;
+    width: 48px;
+    line-height: 58px;
+    text-align: center;
+    font-size: 28px;
+}
+header .button.refresh {
+    right: 8px;
+}
+header .button.custom {
+    right: 58px;
+}
+header #headlist {
+    width: 100%;
+    height: calc(100% - 72px);
+    position: absolute;
+    bottom: 6px;
+    z-index: 1;
+    clear: both;
+    font-size: 12px;
+    border-top: 1px solid #dfe4d7;
+}
+#headlist div {
+    float: left;
+    width: 21%;
+    text-align: center;
+    line-height: 34px;
+}
+.item {
+    height: 34px;
+    line-height: 34px;
+}
+.item, .total {
+    clear: both;
+    font-family: 'Ubuntu Mono';
+    background: #ffffff;
+    margin: 2px 6px;
+    border-radius: 14px;
+}
+.quant, .punit {
+    border-radius: 11px;
+    margin: 0 10px;
+    width: calc(100% - 20px);
+    font-family: 'Ubuntu Mono';
+    padding: 8px 0;
+    font-size: 14px;
+    background: #eeeeee;
+}
+.item div {
+    float: left;
+    width: 21%;
+}
+div input {
+    width: 100%;
+    padding: 0;
+    border: none;
+    padding-left: 16px;
+}
+#picIt {
+    font-family: 'Ubuntu Mono', monospace;
+    width: 280px;
+    padding-bottom: 20px;
+    position: absolute;
+    left: -100vh;
+}
+.header, .copy, .footer p, .item div, .item div input {
+    text-align: center;
+}
+.left, .header div, .footer, .item .discrim {
+    text-align: left !important;
+}
+.item .discrim, #headlist div.left {
+    width: 37%;
+}
+.header div {
+    width: 100%;
+    margin-top: 7px;
+    margin-bottom: 16px;
+}
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 42px;
+    background: #f8fbf1;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+footer div {
+    width: 50%;
+    text-align: center;
+    line-height: 42px;
+    font-family: 'Ubuntu Mono';
+    float: left;
+}
+.footer {
+    margin-top: 7px;
+}
+.right {
+    text-align: right;
+}
+.text, .head, .footer p {
+    font-family: 'Raleway', Courier, monospace;
+    font-weight: 600;
+}
+.head {
+    font-weight: 700;
+    font-size: 85%;
+}
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+tr {
+    border-bottom: 1px solid black;
+}
+td {
+    padding: 2.5px 0;
+}
+hr {
+    border-top: solid 2px black;
+}
+.copy {
+    font-size: 120%;
+    padding: 5px 0;
+}
+#printTable {
+    background-color: white;
+}
+#blur {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    top: 0;
+    opacity: 0.3;
+}
+.popup {
+    position: absolute;
+    background: #f9f9ff;
+    top: -100vh;
+    width: 100%;
+    height: fit-content;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    transition: 0.5s;
+}
+.popup.opened {
+    top: 0;
+}
+.popup > div {
+    position: relative;
+    padding: 30px;
+    color: #5f6368;
+    font-family: 'Raleway';
+    overflow: auto;
+}
+.popup div div {
+    border-radius: 14px;
+    position: relative;
+    height: 42px;
+    background: #e6e9f3;
+}
+.popup.nome input {
+    height: 100%;
+    /* width: calc(100% - 64px); */
+    border-radius: 14px;
+}
+.popup.add input {
+    height: 38px;
+    border-radius: 11px;
+    margin: 6px 0;
+}
+input:focus {
+    border: 2px solid #3b6930;
+    outline: none;
+    background: #f9f9f9;
+    box-sizing: border-box;
+}
+.popup button {
+    border: none;
+    padding: 12px;
+    border-radius: 28px;
+    font-size: 12px;
+    float: right;
+    margin-top: 20px;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+.popup button.done {
+    background: #3b6930;
+    color: #fff;
+}
+.popup button.close {
+    background: #f9f9ff;
+    color: #3b6930;
+    border: 1px solid;
+    margin-right: 8px;
+}
+#unitType {
+    width: calc(50% - 6px);
+    float: left;
+}
+#punit {
+    width: calc(50% - 6px);
+    float: right;
+}
+label {
+    font-size: 12px;
+    margin-top: 12px;
+    margin-left: 11px;
+    font-family: 'Raleway';
+    font-weight: 600;
+}
+label.left {
+    float: left;
+    width: calc(50% - 11px);
+}
+label.right {
+    width: calc(50% - 11px);
+    float: right;
+    text-align: left;
+}
