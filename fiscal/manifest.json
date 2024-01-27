@@ -19,7 +19,7 @@
         "sizes": "1280x800",
         "type": "image/png",
         "platform": "web",
-        "form_factor": "desktop"
+        "form_factor": "wide"
       },
       {
         "src": "screenshot-mobile.png",
