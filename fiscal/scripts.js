@@ -17,6 +17,7 @@ $(document).ready(function() {
 
     // Função para calcular o resultado
     function calcularResultado() {
+        
         // Obter os valores dos inputs dentro da div atual
         var $item = $(this).closest('.item');
         var inputValue1 = parseFloat($item.find('.quant').val().replace(',', '.'));
@@ -88,6 +89,9 @@ $(document).ready(function() {
     });
 
 
+    $('input#punit').click(function(){
+        $(this).val('');
+      });
 
 
     // Função para atualizar o total
