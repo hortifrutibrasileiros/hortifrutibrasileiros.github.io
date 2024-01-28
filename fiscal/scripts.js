@@ -14,16 +14,7 @@ $(document).ready(function() {
     });
     // Variável para armazenar a contagem total
     var totalItens = 0;
-
-
-
-
-
-
-
-
-
-
+    
     // Função para calcular o resultado
 function calcularResultado() {
     // Obter os valores dos inputs dentro da div atual
@@ -66,17 +57,15 @@ function calcularResultado() {
         var inputValue1 = parseFloat($item.find('.quant').val().replace(',', '.'));
         var inputValue2 = parseFloat($item.find('.punit').val().replace(',', '.'));
 
-        // Verificar se os valores são válidos
-        //if (isNaN(inputValue1) || isNaN(inputValue2)) {
-        //    $item.find('.valor').text('x');
-        //    return;
-        //}
-
         // Calcular o resultado
         var valor = inputValue1 * inputValue2;
 
         // Atualizar o texto na div de valor
         $item.find('.valor').text(valor.toFixed(2).replace('.', ','));
+
+        if (isNaN(inputValue1) || isNaN(inputValue2)) {
+            $item.find('.valor').text('-');
+        }
 
         // Atualizar o total
         atualizarTotal();
