@@ -158,7 +158,7 @@ function calcularResultado() {
 
     // Adicionar Div
 
-    $("#adicionarDiv, .popup.add input").on("click keypress", function(event) {
+    $("#adicionarDiv, #punit").on("click keypress", function(event) {
         if ((event.type === "click" && event.target.tagName !== "INPUT") ||
             (event.type === "keypress" && event.which === 13)) {
         // Obter os valores dos campos de entrada
