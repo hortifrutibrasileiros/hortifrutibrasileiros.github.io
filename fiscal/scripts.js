@@ -14,7 +14,7 @@ $(document).ready(function() {
     });
     // Variável para armazenar a contagem total
     var totalItens = 0;
-    
+
     // Função para calcular o resultado
 function calcularResultado() {
     // Obter os valores dos inputs dentro da div atual
