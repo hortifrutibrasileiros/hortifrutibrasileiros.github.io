@@ -2,16 +2,17 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open('brasileiros-hortifruti-fiscal-cache').then((cache) => {
       return cache.addAll([
-        'index.html',
-        'manifest.json',
-        'icon.png',
-        'styles.css',
-        'list.js',
-        'scripts.js',
-        'editlist/index.html',
-        'editlist.png',
-        'favicon.ico',
-        'icons-512.png'
+        '/'
+        '/index.html',
+        '/manifest.json',
+        '/icon.png',
+        '/styles.css',
+        '/list.js',
+        '/scripts.js',
+        '/editlist/index.html',
+        '/editlist.png',
+        '/favicon.ico',
+        '/icons-512.png'
       ]);
     })
   );
