@@ -16,7 +16,7 @@
     visibility: hidden;
     z-index: -10;
 }
-
+p, body {margin:0}
 * {
     user-select: none;
 }
@@ -38,8 +38,8 @@ input::placeholder {
 
 body {
     margin: 0;
-    margin-top: 106px;
-    margin-bottom: 48px;
+    margin-top: 112px;
+    margin-bottom: 56px;
     font-family: Arial, sans-serif;
     background: #ffffff;
     color: #191d17;
@@ -61,7 +61,7 @@ header #concluir {
     position: absolute;
     left: 0;
     height: 100%;
-    width: 78px;
+    width: 68px;
     background-color: #d7e8cd;
     border-bottom-right-radius: 14px;
 }
@@ -73,23 +73,28 @@ header #concluir {
     bottom: 0;
     top: 0;
     background: #cbffb8;
-    padding: 12px;
+    padding: 15px 14px;
     border-radius: 14px;
 }
 header #search {
     position: absolute;
-    left: 78px;
+    left: 68px;
     width: calc(100% - 78px - 48px - 48px);
     height: 100%;
 }
 header #search svg {
     position: absolute;
 }
+#search .icon {
+    top: 25px;
+    left: 25px;
+}
 #search input {
-    height: calc(100% - 24px);
-    width: calc(100% - 24px);
+    height: calc(100% - 18px);
+    width: calc(100% - 14px);
     border-radius: 14px;
     margin: 12px 0 0 12px;
+    padding-left: 36px;
 }
 header .button {
     position: absolute;
@@ -107,13 +112,14 @@ header .button.custom {
 }
 header #headlist {
     width: 100%;
-    height: calc(100% - 72px);
+    height: calc(100% - 66px);
     position: absolute;
-    bottom: 6px;
+    bottom: 0;
     z-index: 1;
     clear: both;
-    font-size: 12px;
+    font-size: 14px;
     border-top: 1px solid #dfe4d7;
+    border-bottom: 1px solid #DFE4D5;
 }
 #headlist div {
     float: left;
@@ -126,11 +132,9 @@ header #headlist {
     line-height: 34px;
 }
 .item, .total {
-    clear: both;
     font-family: 'Ubuntu Mono';
-    background: #ffffff;
-    margin: 2px 6px;
-    border-radius: 14px;
+    padding: 4px 0;
+    border-bottom: 1px solid #dfe4d7;
 }
 .quant, .punit {
     border-radius: 11px;
@@ -139,7 +143,8 @@ header #headlist {
     font-family: 'Ubuntu Mono';
     padding: 8px 0;
     font-size: 14px;
-    background: #eeeeee;
+    background: #ffffff;
+    border: 1px solid;
 }
 .item div {
     float: left;
@@ -177,15 +182,15 @@ footer {
     width: 100%;
     bottom: 0;
     left: 0;
-    height: 42px;
-    background: #f8fbf1;
+    height: 48px;
+    background: #d7e8cd;
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
 }
 footer div {
     width: 50%;
     text-align: center;
-    line-height: 42px;
+    line-height: 48px;
     font-family: 'Ubuntu Mono';
     float: left;
 }
@@ -236,7 +241,7 @@ hr {
 }
 .popup {
     position: absolute;
-    background: #f9f9ff;
+    background: #ffffff;
     top: -100vh;
     width: 100%;
     height: fit-content;
@@ -249,25 +254,21 @@ hr {
 }
 .popup > div {
     position: relative;
-    padding: 30px;
+    padding: 38px;
     color: #5f6368;
     font-family: 'Raleway';
     overflow: auto;
 }
-.popup div div {
-    border-radius: 14px;
-    position: relative;
-    height: 42px;
-    background: #e6e9f3;
+.popup p {
+    font-size: 16px;
+    padding-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #dfe4d7;
 }
-.popup.nome input {
-    height: 100%;
-    /* width: calc(100% - 64px); */
+.popup input {
+    height: 46px;
     border-radius: 14px;
-}
-.popup.add input {
-    height: 38px;
-    border-radius: 11px;
     margin: 6px 0;
 }
 input:focus {
@@ -278,11 +279,10 @@ input:focus {
 }
 .popup button {
     border: none;
-    padding: 12px;
+    padding: 14px;
     border-radius: 28px;
-    font-size: 12px;
     float: right;
-    margin-top: 20px;
+    margin-top: 30px;
     font-weight: 700;
     box-sizing: border-box;
 }
@@ -305,7 +305,7 @@ input:focus {
     float: right;
 }
 label {
-    font-size: 12px;
+    font-size: 14px;
     margin-top: 12px;
     margin-left: 11px;
     font-family: 'Raleway';
