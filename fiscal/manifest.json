@@ -3,7 +3,7 @@
   "name": "ADM Brasileiros Hortifruti",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "icons-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
@@ -17,6 +17,15 @@
   "background_color": "#f8fbf1",
   "display": "standalone",
   "theme_color": "#d7e8cd",
+  "shortcuts": [
+    {
+      "name": "Editar lista",
+      "short_name": "Editar lista",
+      "description": "Editar lista de items",
+      "url": "https://hortifrutibrasileiros.github.io/fiscal/editlist",
+      "icons": [{ "src": "editlist.png", "sizes": "192x192" }]
+    }
+  ],
   "description": "Apliactivo para serviço de Cupom Fiscal para administradores da loja física Brasileiros Hortifruti.",
   "screenshots": [
     {
