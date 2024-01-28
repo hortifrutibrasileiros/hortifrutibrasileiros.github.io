@@ -7,7 +7,7 @@ self.addEventListener('install', (event) => {
         'styles.css',
         'list.js',
         'scripts.js',
-        'editlis/editlist.html',
+        'editlist/editlist.html',
         'editlist.png'
       ]);
     })
