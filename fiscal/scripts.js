@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     function gerarDiv(item) {
         var newDiv = $('<div class="item"></div>');
         newDiv.append('<div><input type="text" inputmode="numeric" class="quant"><a hidden>' + item.unitType + '</a></div>');
@@ -9,49 +9,15 @@ $(document).ready(function() {
     }
 
     // Adiciona as divs geradas dinamicamente ao body
-    items.forEach(function(item) {
+    items.forEach(function (item) {
         $('#body').append(gerarDiv(item));
     });
+
     // Variável para armazenar a contagem total
     var totalItens = 0;
 
     // Função para calcular o resultado
-function calcularResultado() {
-    // Obter os valores dos inputs dentro da div atual
-    var $item = $(this).closest('.item');
-    var inputValue1 = $item.find('.quant').val().replace(',', '.').trim();
-    var inputValue2 = parseFloat($item.find('.punit').val().replace(',', '.'));
-
-    // Se o inputValue1 estiver vazio, definir o valor como 0,00
-    if (inputValue1 === "") {
-        inputValue1 = "0,00";
-    } else {
-        inputValue1 = parseFloat(inputValue1);
-    }
-
-    // Calcular o resultado
-    var valor = inputValue1 * inputValue2;
-
-    // Atualizar o texto na div de valor
-    $item.find('.valor').text(valor.toFixed(2).replace('.', ','));
-
-    // Atualizar o total
-    atualizarTotal();
-
-    // Atualizar a contagem de itens
-    atualizarContagemItens();
-
-    if (inputValue1 > 0) {
-        $item.css('background-color', '#eeeeee');
-    } else {
-        $item.css('background-color', ''); // Limpar a cor de fundo
-    }
-    atualizarContagemItens();
-}
-
-    // Função para calcular o resultado
     function calcularResultado() {
-        
         // Obter os valores dos inputs dentro da div atual
         var $item = $(this).closest('.item');
         var inputValue1 = parseFloat($item.find('.quant').val().replace(',', '.'));
@@ -86,7 +52,7 @@ function calcularResultado() {
         var count = 0;
 
         // Iterar sobre todas as divs com a classe 'quant' e somar apenas aquelas com valores válidos
-        $('.quant').each(function() {
+        $('.quant').each(function () {
             var inputValue = parseFloat($(this).val().replace(',', '.'));
             if (!isNaN(inputValue) && inputValue > 0) {
                 count++;
@@ -103,11 +69,11 @@ function calcularResultado() {
     $('.quant, .punit').on('input', calcularResultado);
 
     // Manipulador de eventos para o campo de pesquisa
-    $('#search input').on('input', function() {
+    $('#search input').on('input', function () {
         var searchTerm = $(this).val().toLowerCase();
 
         // Iterar sobre todas as divs com a classe 'discrim'
-        $('.discrim').each(function() {
+        $('.discrim').each(function () {
             var discrim = $(this).text().toLowerCase();
             var $item = $(this).closest('.item');
 
@@ -124,103 +90,100 @@ function calcularResultado() {
         let inputValue = event.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
         let formattedValue = formatMoney(inputValue);
         $(this).val(formattedValue);
-      });
-    
-      function formatMoney(value) {
+    });
+
+    function formatMoney(value) {
         // Limita o valor entre 0.01 e 999.99 e formata como "0,00"
         let amount = Math.min(Math.max(parseFloat(value) / 100, 0.00), 999.99);
         return amount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      }
-    $('input#punit').click(function(){
-        $(this).val('');
-      });
+    }
 
+    $('input#punit').click(function () {
+        $(this).val('');
+    });
 
     // Função para atualizar o total
     function atualizarTotal() {
         var total = 0;
 
         // Iterar sobre todas as divs com a classe 'valor'
-        $('.valor').each(function() {
+        $('.valor').each(function () {
             var valor = parseFloat($(this).text().replace(',', '.'));
             if (!isNaN(valor)) {
                 total += valor;
             }
         });
 
-
         // Atualizar o texto na div de total
         $('.total').text(total.toFixed(2).replace('.', ','));
     }
 
-
-
-
     // Adicionar Div
-
-    $("#adicionarDiv, #punit").on("click keypress", function(event) {
+    $("#adicionarDiv, #punit").on("click keypress", function (event) {
         if ((event.type === "click" && event.target.tagName !== "INPUT") ||
             (event.type === "keypress" && event.which === 13)) {
-        // Obter os valores dos campos de entrada
-        var unitType = $("#unitType").val();
-        var discrim = $("#discrim").val();
-        var punit = $("#punit").val();
+            // Obter os valores dos campos de entrada
+            var unitType = $("#unitType").val();
+            var discrim = $("#discrim").val();
+            var punit = $("#punit").val();
 
-        // Verificar se todos os campos estão preenchidos
-        if (unitType.trim() === "" || discrim.trim() === "" || punit.trim() === "") {
-            $('.erro').fadeIn();
-            setTimeout(function() {
-                $('.erro').fadeOut();
-            }, 3000);
-            return;
+            // Verificar se todos os campos estão preenchidos
+            if (unitType.trim() === "" || discrim.trim() === "" || punit.trim() === "") {
+                $('.erro').fadeIn();
+                setTimeout(function () {
+                    $('.erro').fadeOut();
+                }, 3000);
+                return;
+            }
+
+            // Criar um novo objeto com os valores
+            var newItem = {
+                unitType: unitType,
+                discrim: discrim,
+                punit: punit
+            };
+
+            // Criar e adicionar a nova div à #body
+            var newDiv = gerarDiv(newItem);
+            $('#body').append(newDiv);
+
+            // Limpar os campos de entrada
+            $("#unitType, #discrim, #punit").val("");
+
+            // Associar a função ao evento de input nos campos da nova div
+            newDiv.find('.quant, .punit').on('input', calcularResultado);
+
+            $("#blur").hide();
+            $(".popup").removeClass('opened');
+            window.history.back();
+
+            // Atualizar a contagem total de itens
+            atualizarContagemItens();
         }
-
-        // Criar um novo objeto com os valores
-        var newItem = {
-            unitType: unitType,
-            discrim: discrim,
-            punit: punit
-        };
-
-        // Criar e adicionar a nova div à #body
-        var newDiv = gerarDiv(newItem);
-        $('#body').append(newDiv);
-
-        // Limpar os campos de entrada
-        $("#unitType, #discrim, #punit").val("");
-
-        // Associar a função ao evento de input nos campos da nova div
-        newDiv.find('.quant, .punit').on('input', calcularResultado);
-
-        $("#blur").hide();
-        $(".popup").removeClass('opened');
-
-        // Atualizar a contagem total de itens
-        atualizarContagemItens();
-    }});
-
-
-
-
-    $(".popup .close").on("click", function() {
-        $("#blur").hide();
-        $(".popup").removeClass('opened');
     });
+
+    $(".popup .close").on("click", function () {
+        $("#blur").hide();
+        $(".popup").removeClass('opened');
+        window.history.back();
+    });
+
     // Quando o botão "Concluir" for clicado
-    $("#concluir").on("click", function() {
+    $("#concluir").on("click", function () {
         $("#blur").show();
         $(".popup.nome").addClass('opened');
         $('.popup.nome input').focus();
     });
+
     // Quando o botão "Add" for clicado
-    $(".button.custom").on("click", function() {
+    $(".button.custom").on("click", function () {
         $("#blur").show();
         $(".popup.add").addClass('opened');
         $('.popup.add input#discrim').focus();
     });
 
     // Quando o botão "finish" for clicado
-    $("#finish, .popup.nome input").on("click keypress", function(event) {
+    $("#finish, .popup.nome input").on("click keypress", function (event) {
         if ((event.type === "click" && event.target.tagName !== "INPUT") ||
             (event.type === "keypress" && event.which === 13)) {
             // Obtém o valor do input
@@ -228,7 +191,7 @@ function calcularResultado() {
 
             $('#tabela tr:not(.head)').empty();
             // Itera sobre cada div com a classe 'item'
-            $('.item').each(function() {
+            $('.item').each(function () {
                 var $item = $(this);
                 var inputValue1 = $item.find('.quant').val();
 
@@ -251,7 +214,7 @@ function calcularResultado() {
                     // Adiciona a nova linha à tabela
                     $('#tabela').append(newRow);
                     // Adicionando um atraso de 1 segundo antes de chamar sharePrint()
-                    setTimeout(function() {
+                    setTimeout(function () {
                         sharePrint();
                     }, 500); // 1000 milissegundos = 1 segundo
                 }
@@ -259,20 +222,24 @@ function calcularResultado() {
 
             if (nomeDigitado.trim() === "") {
                 $("#cliente").text('Não informado');
-              } else {
+            } else {
                 $("#cliente").text(nomeDigitado);
             }
 
             // Esconde o conteúdo novamente
             $("#blur").hide();
             $(".popup").removeClass('opened');
+            window.history.back();
         }
     });
-    $("#blur").on("click", function() {
+
+    $("#blur").on("click", function () {
         $("#blur").hide();
         $(".popup").removeClass('opened');
+        window.history.back();
     });
-    $('.button.refresh').on('click', function() {
+
+    $('.button.refresh').on('click', function () {
         location.reload();
     });
 
@@ -324,3 +291,24 @@ atualizarDataHora();
 
 // Configurando um intervalo para atualizar a cada segundo
 setInterval(atualizarDataHora, 1000);
+
+window.onhashchange = function (e) {
+    var oldURL = e.oldURL.split('#')[1];
+    var newURL = e.newURL.split('#')[1];
+
+    if (oldURL == 'nome') {
+        $("#blur").hide();
+        $(".popup").removeClass('opened');
+        e.preventDefault();
+    }
+    if (oldURL == 'add') {
+        $("#blur").hide();
+        $(".popup").removeClass('opened');
+        e.preventDefault();
+        return false;
+    }
+};
+
+function href(web) {
+    window.location.href = web;
+}
