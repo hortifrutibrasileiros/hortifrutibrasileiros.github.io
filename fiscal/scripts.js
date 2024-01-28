@@ -173,7 +173,7 @@ $(document).ready(function() {
             // Obtém o valor do input
             var nomeDigitado = $(".popup.nome input").val();
 
-            $('#tabela').empty();
+            $('#tabela tr:not(.head)').empty();
             // Itera sobre cada div com a classe 'item'
             $('.item').each(function() {
                 var $item = $(this);
