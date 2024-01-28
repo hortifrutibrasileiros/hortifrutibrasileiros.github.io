@@ -120,7 +120,7 @@ function calcularResultado() {
         });
     });
 
-    $('#punit, .punit').on('input', function (event) {
+    $('#punit').on('input', function (event) {
         let inputValue = event.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
         let formattedValue = formatMoney(inputValue);
         $(this).val(formattedValue);
