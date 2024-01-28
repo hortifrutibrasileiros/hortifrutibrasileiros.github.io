@@ -273,6 +273,9 @@ hr {
     border-radius: 14px;
     margin: 6px 0;
 }
+.popup.nome input {
+    text-transform: capitalize;
+}
 input:focus {
     border: 2px solid #3b6930;
     outline: none;
