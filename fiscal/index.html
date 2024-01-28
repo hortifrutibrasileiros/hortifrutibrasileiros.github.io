@@ -21,7 +21,6 @@
     <script src="scripts.js"></script>
 </head>
 <body>
-
     <header>
         <div>
             <div id="concluir">
@@ -109,8 +108,9 @@
             <label>Discriminação</label><input type="text" inputmode="numeric" id="discrim" maxlength="12">
             <label class="left">Medida</label><label class="right">Valor unitário</label>
             <input type="text" id="unitType" maxlength="4">
-            <input type="text" inputmode="numeric" id="punit" value="0,00" >
+            <input type="text" inputmode="numeric" id="punit" />
             <button class="done" id="adicionarDiv">Adicionar</button>
+            <div hidden class="erro">Preencha todos os campos!</div>
             <button class="close">Cancelar</button>
         </div>
     </div>
@@ -134,7 +134,7 @@
             </table>
             <div class="copy">TOTAL › R$<span class="total">0.00</span></div>
             <div class="footer">
-                CLIENTE › <span id="cliente">Não informado</span><br>
+                CLIENTE › <span id="cliente"></span><br>
                 EMISSÃO › <span id="data_atual"></span>, <span id="hora_atual"></span>
                 <p><br>Obrigado pela preferência!<br></p>
             </div>
@@ -142,11 +142,9 @@
 
         <p hidden class="result">MDN shared successfully</p>
 
-    
-
 <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
+      navigator.serviceWorker.register('/service-worker.js')
         .then((registration) => {
           console.log('Service Worker registrado com sucesso:', registration);
         })
