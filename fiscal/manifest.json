@@ -1,23 +1,32 @@
 {
-  "name": "ADM Brasileiros Hortifruti",
   "short_name": "ADM Brasileiros Hortifruti",
-  "description": "Apliactivo para serviço de Cupom Fiscal para administradores da loja física Brasileiros Hortifruti.",
-  "start_url": "index.html",
-  "display": "standalone",
-  "background_color": "#f8fbf1",
-  "theme_color": "#d7e8cd",
+  "name": "ADM Brasileiros Hortifruti",
   "icons": [
     {
-      "src": "images/icons-192.png",
+      "src": "/images/icons-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "images/icons-512.png",
+      "src": "/images/icons-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
+  "start_url": "index.html",
+  "background_color": "#f8fbf1",
+  "display": "standalone",
+  "theme_color": "#d7e8cd",
+  "shortcuts": [
+    {
+      "name": "Editar lista",
+      "short_name": "Editar lista",
+      "description": "Editar lista de items",
+      "url": "editlist.html",
+      "icons": [{ "src": "editlist.png", "sizes": "192x192" }]
+    }
+  ],
+  "description": "Apliactivo para serviço de Cupom Fiscal para administradores da loja física Brasileiros Hortifruti.",
   "screenshots": [
     {
       "src": "screenshot-desktop.png",
