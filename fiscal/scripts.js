@@ -68,7 +68,7 @@ $(document).ready(function() {
     }
 
     // Associar a função ao evento de input nos campos
-    $('.quant').on('input', calcularResultado);
+    $('.quant, .punit').on('input', calcularResultado);
 
     // Manipulador de eventos para o campo de pesquisa
     $('#search input').on('input', function() {
@@ -173,7 +173,8 @@ $(document).ready(function() {
 
     // Quando o botão "finish" for clicado
     $("#finish, .popup.nome input").on("click keypress", function(event) {
-        if (event.type === "click" || (event.type === "keypress" && event.which === 13)) {
+        if ((event.type === "click" && event.target.tagName !== "INPUT") ||
+            (event.type === "keypress" && event.which === 13)) {
             // Obtém o valor do input
             var nomeDigitado = $(".popup.nome input").val();
 
