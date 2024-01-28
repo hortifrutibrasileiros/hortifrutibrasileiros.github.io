@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="msapplication-TileColor" content="#f6f8fa">
+    <meta name="theme-color" content="#f6f8fa>
+    <title>ADM BH List Editor</title>
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <a href="https://github.com/hortifrutibrasileiros/hortifrutibrasileiros.github.io/edit/main/fiscal/list.js">Go</a>
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('service-worker.js')
+            .then((registration) => {
+              console.log('Service Worker registrado com sucesso:', registration);
+            })
+            .catch((error) => {
+              console.log('Falha ao registrar o Service Worker:', error);
+            });
+        }
+      </script>
+</body>
+</html>
