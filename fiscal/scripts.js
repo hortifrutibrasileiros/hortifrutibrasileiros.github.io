@@ -157,7 +157,10 @@ function calcularResultado() {
 
 
     // Adicionar Div
-    $("#adicionarDiv").on("click", function() {
+
+    $("#adicionarDiv, .popup.add input").on("click keypress", function(event) {
+        if ((event.type === "click" && event.target.tagName !== "INPUT") ||
+            (event.type === "keypress" && event.which === 13)) {
         // Obter os valores dos campos de entrada
         var unitType = $("#unitType").val();
         var discrim = $("#discrim").val();
@@ -194,7 +197,7 @@ function calcularResultado() {
 
         // Atualizar a contagem total de itens
         atualizarContagemItens();
-    });
+    }});
 
 
 
