@@ -204,10 +204,6 @@ footer div {
 .right {
     text-align: right;
 }
-.text, .head, .footer p {
-    font-family: 'Raleway', Courier, monospace;
-    font-weight: 600;
-}
 .head {
     font-weight: 700;
     font-size: 85%;
