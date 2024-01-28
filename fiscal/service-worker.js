@@ -1,8 +1,9 @@
+// service-worker.js
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open('brasileiros-hortifruti-fiscal-cache').then((cache) => {
       return cache.addAll([
-        '/'
+        '/',
         '/index.html',
         '/manifest.json',
         '/icon.png',
