@@ -302,6 +302,19 @@ input:focus {
     border: 1px solid;
     margin-right: 8px;
 }
+.popup .erro {
+    top: 38px;
+    position: fixed;
+    background: #ffd9df;
+    margin: auto;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: 3s;
+}
 #unitType {
     width: calc(50% - 6px);
     float: left;
