@@ -18,6 +18,15 @@
   "display": "standalone",
   "theme_color": "#d7e8cd",
   "description": "Aplicativo para serviço de Cupom Fiscal para administradores da loja física Brasileiros Hortifruti.",
+  "shortcuts": [
+    {
+      "name": "Editar lista",
+      "short_name": "Editar lista",
+      "description": "Editar lista de items",
+      "url": "https://hortifrutibrasileiros.github.io/fiscal/editlist",
+      "icons": [{ "src": "editlist.png", "sizes": "192x192" }]
+    }
+  ],
   "screenshots": [
     {
       "src": "screenshot-desktop.png",
