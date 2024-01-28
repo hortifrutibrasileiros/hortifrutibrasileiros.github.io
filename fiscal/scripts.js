@@ -1,39 +1,3 @@
-$(document).ready(function () {
-    // Detecta mudanças no tamanho da janela (quando o teclado é aberto/fechado)
-    $(window).resize(function () {
-      // Ajusta a posição do elemento fixo
-      adjustFixedElementPosition();
-    });
-  
-    // Função para ajustar a posição do elemento fixo
-    function adjustFixedElementPosition() {
-      var windowHeight = $(window).height();
-      var fixedElement = $('footer');
-  
-      // Obtém a posição do elemento em relação à parte superior da janela
-      var elementTop = fixedElement.offset().top;
-  
-      // Calcula a distância entre a parte inferior do elemento e o final da janela
-      var distanceFromBottom = windowHeight - elementTop;
-  
-      // Se a distância for menor que 0, o teclado está sobrepondo o elemento
-      if (distanceFromBottom < 0) {
-        // Ajusta a margem superior para levantar o elemento acima do teclado
-        fixedElement.css('margin-top', distanceFromBottom + 'px');
-      } else {
-        // Se o teclado estiver fechado, redefine a margem superior para 0
-        fixedElement.css('margin-top', '0');
-      }
-    }
-  
-    // Chama a função de ajuste quando a página é carregada
-    $(window).load(function () {
-      adjustFixedElementPosition();
-    });
-  });
-  
-
-
 $(document).ready(function() {
     function gerarDiv(item) {
         var newDiv = $('<div class="item"></div>');
