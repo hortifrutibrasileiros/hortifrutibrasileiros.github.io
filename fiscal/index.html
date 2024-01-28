@@ -106,10 +106,10 @@
     <div class="popup add">
         <div>
             <p class="title">Adicionar item</p>
-            <label>Discriminação</label><input type="text" id="discrim">
+            <label>Discriminação</label><input type="text" inputmode="numeric" id="discrim">
             <label class="left">Medida</label><label class="right">Valor unitário</label>
             <input type="text" id="unitType">
-            <input type="text" inputmode="numeric" id="punit">
+            <input type="text" inputmode="numeric" id="punit" value="0,00">
             <button class="done" id="adicionarDiv">Adicionar</button>
             <button class="close">Cancelar</button>
         </div>
@@ -136,7 +136,7 @@
             <div class="footer">
                 CLIENTE › <span id="cliente">Não informado</span><br>
                 EMISSÃO › <span id="data_atual"></span>, <span id="hora_atual"></span>
-                <p>Obrigado pela preferência!</p>
+                <p><br>Obrigado pela preferência!<br></p>
             </div>
     </section>
 
