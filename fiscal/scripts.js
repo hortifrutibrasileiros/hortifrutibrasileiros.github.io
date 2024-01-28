@@ -15,6 +15,49 @@ $(document).ready(function() {
     // Variável para armazenar a contagem total
     var totalItens = 0;
 
+
+
+
+
+
+
+
+
+
+    // Função para calcular o resultado
+function calcularResultado() {
+    // Obter os valores dos inputs dentro da div atual
+    var $item = $(this).closest('.item');
+    var inputValue1 = $item.find('.quant').val().replace(',', '.').trim();
+    var inputValue2 = parseFloat($item.find('.punit').val().replace(',', '.'));
+
+    // Se o inputValue1 estiver vazio, definir o valor como 0,00
+    if (inputValue1 === "") {
+        inputValue1 = "0,00";
+    } else {
+        inputValue1 = parseFloat(inputValue1);
+    }
+
+    // Calcular o resultado
+    var valor = inputValue1 * inputValue2;
+
+    // Atualizar o texto na div de valor
+    $item.find('.valor').text(valor.toFixed(2).replace('.', ','));
+
+    // Atualizar o total
+    atualizarTotal();
+
+    // Atualizar a contagem de itens
+    atualizarContagemItens();
+
+    if (inputValue1 > 0) {
+        $item.css('background-color', '#eeeeee');
+    } else {
+        $item.css('background-color', ''); // Limpar a cor de fundo
+    }
+    atualizarContagemItens();
+}
+
     // Função para calcular o resultado
     function calcularResultado() {
         
@@ -88,7 +131,17 @@ $(document).ready(function() {
         });
     });
 
-
+    $('#punit, .punit').on('input', function (event) {
+        let inputValue = event.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        let formattedValue = formatMoney(inputValue);
+        $(this).val(formattedValue);
+      });
+    
+      function formatMoney(value) {
+        // Limita o valor entre 0.01 e 999.99 e formata como "0,00"
+        let amount = Math.min(Math.max(parseFloat(value) / 100, 0.00), 999.99);
+        return amount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
     $('input#punit').click(function(){
         $(this).val('');
       });
@@ -123,7 +176,10 @@ $(document).ready(function() {
 
         // Verificar se todos os campos estão preenchidos
         if (unitType.trim() === "" || discrim.trim() === "" || punit.trim() === "") {
-            alert("Por favor, preencha todos os campos antes de adicionar uma nova div.");
+            $('.erro').fadeIn();
+            setTimeout(function() {
+                $('.erro').fadeOut();
+            }, 3000);
             return;
         }
 
@@ -209,8 +265,11 @@ $(document).ready(function() {
                 }
             });
 
-            // Mostra o nome na div com id "nome"
-            $("#cliente").text(nomeDigitado);
+            if (nomeDigitado.trim() === "") {
+                $("#cliente").text('Não informado');
+              } else {
+                $("#cliente").text(nomeDigitado);
+            }
 
             // Esconde o conteúdo novamente
             $("#blur").hide();
