@@ -9,10 +9,6 @@ self.addEventListener('install', (event) => {
         '/styles.css',
         '/list.js',
         '/scripts.js',
-        '/editlist.html',
-        '/editlist.png',
-        '/favicon.ico',
-        '/icons-512.png'
       ]);
     })
   );
