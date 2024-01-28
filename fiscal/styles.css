@@ -318,6 +318,7 @@ input:focus {
 #unitType {
     width: calc(50% - 6px);
     float: left;
+    text-transform: lowercase;
 }
 #punit {
     width: calc(50% - 6px);
