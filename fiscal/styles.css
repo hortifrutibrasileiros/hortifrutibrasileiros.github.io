@@ -246,18 +246,17 @@ hr {
 .popup {
     position: fixed;
     background: #ffffff;
-    top: -200vh;
+    top: -100vh;
     width: calc(100% - 32px);
     margin: auto;
     left: 0;
     right: 0;
-    bottom: 0;
     height: fit-content;
     border-radius: 14px;
     transition: 0.5s;
 }
 .popup.opened {
-    top: 0;
+    top: 16px;
 }
 .popup > div {
     position: relative;
