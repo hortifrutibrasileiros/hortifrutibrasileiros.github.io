@@ -1,6 +1,7 @@
 var items = [
     { unitType: 'kg', discrim: 'Abacate', punit: '6,00' },
     { unitType: 'unid', discrim: 'Abacaxi', punit: '5,00' },
+    { unitType: 'kg', discrim: 'Raiz açafrão', punit: '50,00' },
     { unitType: 'kg', discrim: 'Acelga', punit: '7,00' },
     { unitType: 'palm', discrim: 'Banana', punit: '3,00' },
     { unitType: 'kg', discrim: 'Abobrinha', punit: '4,00' },
