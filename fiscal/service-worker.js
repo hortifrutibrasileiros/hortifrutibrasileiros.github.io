@@ -8,8 +8,6 @@ self.addEventListener('install', (event) => {
         '/styles.css',
         '/list.js',
         '/scripts.js',
-        '/editlist/index.html',
-        '/editlist.png'
       ]);
     })
   );
