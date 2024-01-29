@@ -27,6 +27,7 @@ var items = [
     { unitType: 'unid', discrim: 'Espinafre',    punit: '1,00' },
     { unitType: 'kg'  , discrim: 'Feijão verde', punit: '14,00' },
     { unitType: 'kg'  , discrim: 'Gengibre',     punit: '20,00' },
+    { unitType: 'kg'  , discrim: 'Goma',         punit: '5,00' },
     { unitType: 'unid', discrim: 'Hortelã',      punit: '1,00' },
     { unitType: 'kg'  , discrim: 'Inhame',       punit: '7,00' },
     { unitType: 'kg'  , discrim: 'Jerimum',      punit: '5,00' },
@@ -51,6 +52,7 @@ var items = [
     { unitType: 'kg'  , discrim: 'Repolho ver.', punit: '4,00' },
     { unitType: 'unid', discrim: 'Rúcula',       punit: '1,00' },
     { unitType: 'unid', discrim: 'Salsa',        punit: '1,00' },
+    { unitType: 'kg'  , discrim: 'Tempero nat.', punit: '2,00' },
     { unitType: 'kg'  , discrim: 'Tomate',       punit: '5,00' },
     { unitType: 'kg'  , discrim: 'Uva Vitória',  punit: '14,00' },
     { unitType: 'kg'  , discrim: 'Vagem',        punit: '7,00' }
