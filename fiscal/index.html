@@ -47,7 +47,7 @@
 <path fill-rule="evenodd"  fill="#3c4b37"
  d="M13.751,12.506 L11.041,9.796 C13.068,7.087 12.516,3.248 9.807,1.221 C7.098,-0.806 3.259,-0.253 1.232,2.456 C-0.795,5.164 -0.242,9.003 2.466,11.030 C4.642,12.658 7.631,12.658 9.807,11.030 L12.517,13.740 C12.858,14.081 13.410,14.081 13.750,13.740 C14.091,13.400 14.091,12.847 13.750,12.507 L13.751,12.506 ZM6.159,10.507 C3.752,10.507 1.800,8.556 1.800,6.148 C1.800,3.741 3.752,1.790 6.159,1.790 C8.567,1.790 10.518,3.741 10.518,6.148 C10.516,8.555 8.566,10.505 6.159,10.507 Z"/>
 </svg>
-                    <input type="text" placeholder="Localizar item">
+                    <input type="text" placeholder="Localizar item" />
             </div>
             <div class="button refresh">
                 <svg 
@@ -96,7 +96,7 @@
     <div class="popup nome">
         <div>
             <p class="title">Nome do cliente</p>
-            <input type="text">
+            <input type="text" />
             <button class="done" id="finish">Finalizar</button>
             <button class="close">Cancelar</button>
         </div>
@@ -105,10 +105,10 @@
     <div class="popup add">
         <div>
             <p class="title">Adicionar item</p>
-            <label>Discriminação</label><input type="text" id="discrim" maxlength="12">
+            <label>Discriminação</label><input type="text" id="discrim" placeholder="Nome do produto" maxlength="12" />
             <label class="left">Medida</label><label class="right">Valor unitário</label>
-            <input type="text" id="unitType" maxlength="4">
-            <input type="text" inputmode="numeric" id="punit" />
+            <input type="text" id="unitType" maxlength="4" placeholder="kg, unid, etc" />
+            <input type="text" inputmode="numeric" id="punit" placeholder="0,00" />
             <button class="done" id="adicionarDiv">Adicionar</button>
             <div hidden class="erro">Preencha todos os campos!</div>
             <button class="close">Cancelar</button>
