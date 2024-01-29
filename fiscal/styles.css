@@ -269,6 +269,16 @@ footer div {
     font-family: 'Ubuntu Mono';
     float: left;
 }
+footer button {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 1px;
+    background: #dce1e7;
+    padding: 0;
+}
 .footer {
     margin-top: 7px;
 }
