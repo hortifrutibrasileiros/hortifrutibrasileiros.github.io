@@ -95,7 +95,7 @@ $(document).ready(function () {
     $("#adicionarDiv, #punit").on("click keypress", function (event) {
         if ((event.type === "click" && event.target.tagName !== "INPUT") ||
             (event.type === "keypress" && event.which === 13)) {
-            var unitType = $("#unitType").val();
+            var unitType = $("#unitType").val().toLowerCase();
             var discrim = $("#discrim").val();
             var punit = $("#punit").val();
 
