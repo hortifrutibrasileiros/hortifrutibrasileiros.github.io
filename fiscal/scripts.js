@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     function gerarDiv(item) {
         var newDiv = $('<div class="item"></div>');
-        newDiv.append('<div><input type="text" inputmode="numeric" class="quant" maxlength="6" /><a hidden>' + item.unitType + '</a></div>');
+        newDiv.append('<div><input type="text" inputmode="numeric" class="quant" maxlength="6" placeholder="1" /><a hidden>' + item.unitType + '</a></div>');
         newDiv.append('<div class="discrim">' + item.discrim + '</div>');
         newDiv.append('<div><input type="text" inputmode="numeric" class="punit" maxlength="6" value="' + item.punit + '" /></div>');
         newDiv.append('<div class="valor">-</div>');
@@ -10,7 +10,7 @@ $(document).ready(function () {
     }
 
     items.forEach(function (item) {
-        $('#body').append(gerarDiv(item));
+        $('section').append(gerarDiv(item));
     });
     var totalItens = 0;
 
@@ -20,7 +20,7 @@ $(document).ready(function () {
         var inputValue2 = parseFloat($item.find('.punit').val().replace(',', '.'));
         var valor = inputValue1 * inputValue2;
 
-        $item.find('.valor').text(valor.toFixed(2).replace('.', ','));
+        $item.find('.valor').text(valor.toFixed(2));
 
         if (isNaN(inputValue1) || isNaN(inputValue2)) {
             $item.find('.valor').text('-');
@@ -72,12 +72,12 @@ $(document).ready(function () {
     });
 
     function formatMoney(value) {
-        // Limita o valor entre 0.01 e 999.99 e formata como "0,00"
+        // Limita o valor entre 0.01 e 999.99 e formata como "0.00"
         let amount = Math.min(Math.max(parseFloat(value) / 100, 0.00), 999.99);
-        return amount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return amount.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    $('input#punit').click(function () {
+    $('input#punit, .closela').click(function () {
         $(this).val('');
     });
 
@@ -92,17 +92,19 @@ $(document).ready(function () {
         $('.total').text(total.toFixed(2).replace('.', ','));
     }
 
-    $("#adicionarDiv, #punit").on("click keypress", function (event) {
+    $(".addItem, #punit").on("click keypress", function (event) {
         if ((event.type === "click" && event.target.tagName !== "INPUT") ||
             (event.type === "keypress" && event.which === 13)) {
             var unitType = $("#unitType").val().toLowerCase();
-            var discrim = $("#discrim").val();
+            var discr = $("#discrim").val();
+            var discrim = capitalizeFirst(discr);
             var punit = $("#punit").val();
 
             if (unitType.trim() === "" || discrim.trim() === "" || punit.trim() === "") {
-                $('.erro').fadeIn();
+                $('.aviso').text('Preencha todos os campos!');
+                $('.aviso').fadeIn();
                 setTimeout(function () {
-                    $('.erro').fadeOut();
+                    $('.aviso').fadeOut();
                 }, 3000);
                 return;
             }
@@ -114,22 +116,56 @@ $(document).ready(function () {
             };
 
             var newDiv = gerarDiv(newItem);
-            $('#body').append(newDiv);
-
+            $('section').append(newDiv);
             $("#unitType, #discrim, #punit").val("");
-
             newDiv.find('.quant, .punit').on('input', calcularResultado);
 
             fecharPopup()
-
             atualizarContagemItens();
         }
     });
+
+    $('.quant, .punit').on('input', function() {
+        var valorAtual = $(this).val();
+        var novoValor = valorAtual.replace(/,/g, '.');
+        $(this).val(novoValor);
+      });
+
+    var scrollDistance = 16;
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > scrollDistance) {
+            $(".headlist").addClass("fixed");
+            $('body').css('margin-top', 'calc(60px + 16px + 38px)');
+        } else {
+            $(".headlist").removeClass("fixed");
+            $('body').css('margin-top', 'calc(60px + 16px)');
+        }
+    });
+
+
+    $('#search input').on('input', function() {
+        // Verifica se o input está vazio
+        if ($(this).val() === '') {
+          $('button.clean').hide();
+        } else {
+          $('button.clean').show();
+        }
+      });
+
+      $('button.clean').on('click', function() {
+        $('#search input').val('');
+        $(this).hide();
+        $('.item').show();
+      });
 
     function capitalize(str) {
         return str.replace(/\b\w/g, function (char) {
         return char.toUpperCase();
       });
+    }
+    function capitalizeFirst(str) {
+        // Transforma a primeira letra em maiúscula e mantém as demais como estão
+        return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
     function fecharPopup() {
@@ -138,23 +174,23 @@ $(document).ready(function () {
         window.history.back();
     }
     
-    $("#blur, .popup .close").on("click", fecharPopup);
+    $("#blur, .popup .head button").on("click", fecharPopup);
 
     function abrirPopup(selector, inputSelector) {
         $("#blur").show();
         $(selector).addClass('opened');
         $(inputSelector).focus();
     }
-    $("#concluir").on("click", function () {
+    $(".concluir").on("click", function () {
         abrirPopup(".popup.nome", '.popup.nome input');
     });
 
-    $(".button.custom").on("click", function () {
+    $("header .custom").on("click", function () {
         abrirPopup(".popup.add", '.popup.add input#discrim');
     });
 
     
-    $("#finish, .popup.nome input").on("click keypress", function (event) {
+    $(".finish, .popup.nome input").on("click keypress", function (event) {
         if ((event.type === "click" && event.target.tagName !== "INPUT") ||
             (event.type === "keypress" && event.which === 13)) {
             var nome = $(".popup.nome input").val();
@@ -163,13 +199,13 @@ $(document).ready(function () {
             $('#tabela tr:not(.head)').empty();
             $('.item').each(function () {
                 var $item = $(this);
-                var inputValue1 = $item.find('.quant').val();
+                var inputValue1 = $item.find('.quant').val().replace('.', ',');
 
                 if (inputValue1.trim() !== "") {
                     var value1type = $item.find('a').text();
                     var discrim = $item.find('.discrim').text();
-                    var inputValue2 = $item.find('.punit').val();
-                    var valor = $item.find('.valor').text();
+                    var inputValue2 = $item.find('.punit').val().replace('.', ',');
+                    var valor = $item.find('.valor').text().replace('.', ',');
 
                     var newRow = $('<tr></tr>');
 
@@ -195,9 +231,19 @@ $(document).ready(function () {
         }
     });
 
-    $('.button.refresh').on('click', function () {
-        location.reload();
-    });
+    
+$('button.sharePic').click(function () {
+    $('.aviso').text('Compartilhe sua imagem...');
+    $('.aviso').fadeIn();
+    setTimeout(function () {
+        $('.aviso').fadeOut();
+    }, 3000);
+
+    $('#picIt').css('padding', '20px');
+    setTimeout(function () {
+        sharePrint();
+    }, 500);
+});
 
 });
 
@@ -217,9 +263,16 @@ async function sharePrint() {
             title: 'Imprimir',
             files: [file]
         };
+        
+        const resultPara = document.querySelector('.aviso');
 
         await navigator.share(shareData);
-        resultPara.textContent = 'MDN shared successfully';
+        resultPara.textContent = 'Selecione o app de impressão...';
+        $('.aviso').fadeIn();
+        setTimeout(function () {
+            $('.aviso').fadeOut();
+        }, 3000);
+        $('.sharePic').css('animation', 'moveButton 1s infinite');
     } catch (e) {
         resultPara.textContent = 'Error: ' + e;
     }
