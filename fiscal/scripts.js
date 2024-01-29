@@ -2,9 +2,9 @@ $(document).ready(function () {
 
     function gerarDiv(item) {
         var newDiv = $('<div class="item"></div>');
-        newDiv.append('<div><input type="text" inputmode="numeric" class="quant"><a hidden>' + item.unitType + '</a></div>');
+        newDiv.append('<div><input type="text" inputmode="numeric" class="quant" maxlength="6" /><a hidden>' + item.unitType + '</a></div>');
         newDiv.append('<div class="discrim">' + item.discrim + '</div>');
-        newDiv.append('<div><input type="text" inputmode="numeric" class="punit" value="' + item.punit + '"></div>');
+        newDiv.append('<div><input type="text" inputmode="numeric" class="punit" maxlength="6" value="' + item.punit + '" /></div>');
         newDiv.append('<div class="valor">-</div>');
         return newDiv;
     }
