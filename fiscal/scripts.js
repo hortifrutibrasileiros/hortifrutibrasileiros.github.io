@@ -126,6 +126,12 @@ $(document).ready(function () {
         }
     });
 
+    function capitalize(str) {
+        return str.replace(/\b\w/g, function (char) {
+        return char.toUpperCase();
+      });
+    }
+
     function fecharPopup() {
         $("#blur").hide();
         $(".popup").removeClass('opened');
@@ -151,7 +157,8 @@ $(document).ready(function () {
     $("#finish, .popup.nome input").on("click keypress", function (event) {
         if ((event.type === "click" && event.target.tagName !== "INPUT") ||
             (event.type === "keypress" && event.which === 13)) {
-            var nomeDigitado = $(".popup.nome input").val();
+            var nome = $(".popup.nome input").val();
+            var nomeCliente = capitalize(nome);
 
             $('#tabela tr:not(.head)').empty();
             $('.item').each(function () {
@@ -178,10 +185,10 @@ $(document).ready(function () {
                 }
             });
 
-            if (nomeDigitado.trim() === "") {
+            if (nomeCliente.trim() === "") {
                 $("#cliente").text('Não informado');
             } else {
-                $("#cliente").text(nomeDigitado);
+                $("#cliente").text(nomeCliente);
             }
 
             fecharPopup();
