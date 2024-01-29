@@ -242,7 +242,7 @@ hr {
 .popup {
     position: fixed;
     background: #ffffff;
-    top: -100vh;
+    top: -200vh;
     width: calc(100% - 32px);
     margin: auto;
     left: 0;
