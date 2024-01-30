@@ -134,6 +134,18 @@ $(document).ready(function () {
             $(".head.list").removeClass("fixed");
             $('body').css('margin-top', 'calc(60px + 16px)');
         }
+
+        var scrollHeight = $(document).height();
+        var scrollPosition = $(window).height() + $(window).scrollTop();
+
+        if (scrollHeight - scrollPosition < scrollDistance) {
+            $('.foot').addClass('fixed');
+        } else {
+            $('.foot').removeClass('fixed');
+        }
+        if ($(this).scrollTop() < scrollDistance) {
+            $('.foot').removeClass('fixed');
+        }
     });
 
     $('#search input').on('input', function() {
