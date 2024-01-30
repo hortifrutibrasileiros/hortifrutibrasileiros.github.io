@@ -161,20 +161,26 @@ section {
     overflow: hidden;
     background: white;
 }
-section .headlist {
+section .list {
     width: 100%;
     height: 38px;
     max-width: 640px;
     font-size: 12.5px;
     line-height: 38px;
     background: #f6f8fa;
-    border-bottom: 1px solid #dce1e7;
     color: #1f2328;
     font-weight: 600;
     transition: 0.2;
     box-sizing: border-box;
+    position: relative;
 }
-.headlist.fixed {
+section .head.list {
+    border-bottom: 1px solid #dce1e7;
+}
+section .foot.list {
+    border-top: 1px solid #dce1e7;
+}
+.head.list.fixed {
     position: fixed;
     top: 60px;
     left: 0;
@@ -183,28 +189,18 @@ section .headlist {
     padding: 0 16px;
     box-sizing: border-box;
 }
-.headlist div {
+.list div {
     float: left;
-    width: 21%;
     text-align: center;
 }
-.headlist .left {
-    padding-left: 10px;
-    box-sizing: border-box;
+.head.list div {
+    width: 21%;
 }
-section .footlist {
-    position: relative;
-    font-family: 'Ubuntu Mono';
-    width: 100%;
-    height: 32px;
-    max-width: 640px;
-    font-size: 12.5px;
-    line-height: 32px;
-    background: #f6f8fa;
-    border-top: 1px solid #dce1e7;
-    color: #1f2328;
-    font-weight: 600;
-    transition: 0.2;
+.foot.list div {
+    width: 50%;
+}
+.head.list .left {
+    padding-left: 10px;
     box-sizing: border-box;
 }
 .footlist.fixed {
@@ -215,11 +211,6 @@ section .footlist {
     border-radius: 0;
     padding: 0 16px;
     box-sizing: border-box;
-}
-.footlist div {
-    float: left;
-    width: 50%;
-    text-align: center;
 }
 .item {
     height: 36px;
