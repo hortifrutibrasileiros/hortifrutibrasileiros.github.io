@@ -1,11 +1,10 @@
-/* FONT */
+/* pre-format */
 @font-face {
     font-family: 'BHf';
     src: url('BHFiscalFont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
-/* CONFIG STYLE */
 ::-webkit-scrollbar {
     background: transparent;
     color: transparent;
@@ -23,7 +22,7 @@
     visibility: hidden;
     z-index: -10;
 }
-p, body {margin:0}
+p {margin:0}
 * {
     user-select: none;
 }
@@ -41,10 +40,16 @@ input {
     font-size: 16px;
     background: #f6f8fa;
 }
+div input {
+    width: 100%;
+    padding: 0;
+    padding-left: 16px;
+}
 input::placeholder {
     font-size: 14px;
 }
-/* THE STYLE */
+
+/* STYLE */
 body {
     margin: 0 auto;
     margin-top: calc(60px + 16px);
@@ -54,6 +59,7 @@ body {
     color: #191d17;
     max-width: 640px;
 }
+/* header */
 header {
     position: fixed;
     width: 100%;
@@ -93,6 +99,15 @@ header #logo {
     background-repeat: no-repeat;
     background-position: center;
 }
+header #search {
+    position: absolute;
+    left: calc(50px + 12px);
+    width: calc(100% - 58px - 16px - 20px - 76px);
+    height: 38px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+}
 header .concluir {
     position: absolute;
     right: 0;
@@ -105,15 +120,6 @@ header .concluir {
     background: #118429;
     color: #ffffff;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-header #search {
-    position: absolute;
-    left: calc(50px + 12px);
-    width: calc(100% - 58px - 16px - 20px - 76px);
-    height: 38px;
-    margin: auto;
-    top: 0;
-    bottom: 0;
 }
 #search button {
     width: 38px;
@@ -153,6 +159,7 @@ header .custom {
     right: calc(44px + 16px);
     color: #656d76;
 }
+/* section */
 section {
     margin: 16px;
     border: 1px solid #dce1e7;
@@ -212,6 +219,7 @@ section .foot.list {
     padding: 0 16px;
     box-sizing: border-box;
 }
+/* section > item */
 .item {
     height: 36px;
     line-height: 36px;
@@ -219,7 +227,12 @@ section .foot.list {
     border-bottom: 1px solid #dce1e7;
     font-size: 14px;
 }
-.quant, .punit {
+.item div {
+    height: 100%;
+    float: left;
+    width: 21%;
+}
+.item .quant, .punit {
     width: 100%;
     font-family: 'Ubuntu Mono';
     padding: 0 8px;
@@ -229,17 +242,12 @@ section .foot.list {
     border-left: 1px solid #dce1e7;
     border-right: 1px solid #dce1e7;
 }
-.quant::placeholder {
-    font-family: BHf;
-    font-size: 10px;
-}
-.item div {
-    height: 100%;
-    float: left;
-    width: 21%;
-}
 .item .quant {
     border-left: none;
+}
+.item .quant::placeholder {
+    font-family: BHf;
+    font-size: 10px;
 }
 .item .discrim {
     padding-left: 10px;
@@ -254,27 +262,7 @@ div input {
     border: none;
     padding-left: 16px;
 }
-#picIt {
-    font-family: 'Ubuntu Mono', monospace;
-    width: 280px;
-    padding-bottom: 20px;
-    position: absolute;
-    left: -100vh;
-}
-.header, .copy, .footer p, .item div, .item div input {
-    text-align: center;
-}
-.left, .header div, .footer, .item .discrim {
-    text-align: left !important;
-}
-.item .discrim, .headlist div.left {
-    width: 37%;
-}
-.header div {
-    width: 100%;
-    margin-top: 7px;
-    margin-bottom: 16px;
-}
+/* FOOTER */
 footer {
     position: fixed;
     width: 100%;
@@ -303,39 +291,7 @@ footer button, .foot.list button {
     background: #dce1e7;
     padding: 0;
 }
-.footer {
-    margin-top: 7px;
-}
-.right {
-    text-align: right;
-}
-tr.head {
-    font-weight: 700;
-    font-size: 14px;
-}
-table {
-    width: 100%;
-    text-align: center;
-    border-collapse: collapse;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-}
-tr {
-    border-bottom: 1px solid black;
-}
-td {
-    padding: 2.5px 0;
-}
-hr {
-    border-top: solid 2px black;
-}
-.copy {
-    font-size: 17px;
-    padding: 5px 0;
-}
-#printTable {
-    background-color: white;
-}
+/* popups */
 .popup {
     position: fixed;
     background: #ffffff;
@@ -412,6 +368,62 @@ input:focus {
     color: #fff;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
+/* html2canvas */
+#picIt {
+    font-family: 'Ubuntu Mono', monospace;
+    width: 280px;
+    padding-bottom: 20px;
+    position: absolute;
+    left: -100vh;
+}
+.header, .copy, .footer p, .item div, .item div input {
+    text-align: center;
+}
+.left, .header div, .footer, .item .discrim {
+    text-align: left !important;
+}
+.item .discrim, .headlist div.left {
+    width: 37%;
+}
+.header div {
+    width: 100%;
+    margin-top: 7px;
+    margin-bottom: 16px;
+}
+.footer {
+    margin-top: 7px;
+}
+.right {
+    text-align: right;
+}
+tr.head {
+    font-weight: 700;
+    font-size: 14px;
+}
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+tr {
+    border-bottom: 1px solid black;
+}
+td {
+    padding: 2.5px 0;
+}
+hr {
+    border-top: solid 2px black;
+}
+.copy {
+    font-size: 17px;
+    padding: 5px 0;
+}
+#printTable {
+    background-color: white;
+}
+/* + */
 .aviso {
     top: 38px;
     position: fixed;
