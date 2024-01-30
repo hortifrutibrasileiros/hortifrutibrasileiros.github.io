@@ -212,7 +212,7 @@ section .foot.list {
 }
 .foot.list.fixed {
     position: fixed;
-    top: 60px;
+    bottom: 0;
     left: 0;
     width: 100%;
     border-radius: 0;
