@@ -293,7 +293,7 @@ footer div {
     font-family: 'Ubuntu Mono';
     float: left;
 }
-footer button, .footlist button {
+footer button, .foot.list button {
     position: absolute;
     margin: 0 auto;
     left: 0;
