@@ -10,15 +10,9 @@ $(document).ready(function () {
     }
 
     items.forEach(function (item) {
-        $('section .list').append(gerarDiv(item));
+        $('section #list').append(gerarDiv(item));
     });
     var totalItens = 0;
-
-
-
-
-    
-
 
     function calcularResultado() {
         var $item = $(this).closest('.item');
@@ -122,7 +116,7 @@ $(document).ready(function () {
             };
 
             var newDiv = gerarDiv(newItem);
-            $('section .list').append(newDiv);
+            $('section #list').append(newDiv);
             $("#unitType, #discrim, #punit").val("");
             newDiv.find('.quant, .punit').on('input', calcularResultado);
 
