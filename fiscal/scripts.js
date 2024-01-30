@@ -139,12 +139,12 @@ $(document).ready(function () {
         var scrollPosition = $(window).height() + $(window).scrollTop();
 
         if (scrollHeight - scrollPosition < scrollDistance) {
-            $('.foot').addClass('fixed');
-        } else {
             $('.foot').removeClass('fixed');
+        } else {
+            $('.foot').addClass('fixed');
         }
         if ($(this).scrollTop() < scrollDistance) {
-            $('.foot').removeClass('fixed');
+            $('.foot').addClass('fixed');
         }
     });
 
