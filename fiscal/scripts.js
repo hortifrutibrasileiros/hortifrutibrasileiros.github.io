@@ -139,9 +139,9 @@ $(document).ready(function () {
         var scrollPosition = $(window).height() + $(window).scrollTop();
 
         if (scrollHeight - scrollPosition < scrollDistance) {
-            $('.foot').removeClass('fixed');
+            $('.foot').removeClass('relative');
         } else {
-            $('.foot').addClass('fixed');
+            $('.foot').addClass('relative');
         }
         if ($(this).scrollTop() < scrollDistance) {
             $('.foot').addClass('fixed');
