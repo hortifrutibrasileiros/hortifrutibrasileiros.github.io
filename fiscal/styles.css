@@ -210,7 +210,7 @@ section .foot.list {
     padding-left: 10px;
     box-sizing: border-box;
 }
-.footlist.fixed {
+.foot.list.fixed {
     position: fixed;
     top: 60px;
     left: 0;
