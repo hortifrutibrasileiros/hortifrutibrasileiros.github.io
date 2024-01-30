@@ -6,8 +6,8 @@
     <meta name="description" content="Serviço de Cupom Fiscal para administradores da loja física Brasileiros Hortifruti.">
     <meta name="author" content="thiagosoubra">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <meta name="msapplication-TileColor" content="#f6f8fa">
-    <meta name="theme-color" content="#f6f8fa">
+    <meta name="msapplication-TileColor" content="#d7e8cd">
+    <meta name="theme-color" content="#d7e8cd">
     <title>Brasileiros Hortifruti - ADM</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
@@ -41,11 +41,17 @@
                 <div>P. Unit.</div>
                 <div>Total</div>
         </div>
+        <div class="list"></div>
+        <div class="footlist">
+                <div><span class="itens">0</span> ITENS</div>
+                <button></button>
+                <div>TOTAL R$<span class="total">0.00</span></div>
+        </div>
     </section>
 
     <footer>
-        <div>
-            <span class="itens">0</span> ITENS</div>
+        <div><span class="itens">0</span> ITENS</div>
+        <button></button>
         <div>TOTAL R$<span class="total">0.00</span></div>
     </footer>
 
@@ -97,7 +103,7 @@
                 <td class="right">VALOR</td>
             </tr>
         </table>
-        <div class="copy">TOTAL › R$<span class="total">0.00</span></div>
+        
         <div class="footer">
             <button class="cliente icon">7</button>CLIENTE › <span id="cliente"></span><br>
             <button class="emissao icon">8</button>EMISSÃO › <span id="data_atual"></span>, <span id="hora_atual"></span>
