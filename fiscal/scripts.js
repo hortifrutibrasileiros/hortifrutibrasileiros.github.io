@@ -134,10 +134,10 @@ $(document).ready(function () {
     var scrollDistance = 16;
     $(window).scroll(function() {
         if ($(this).scrollTop() > scrollDistance) {
-            $(".headlist").addClass("fixed");
+            $(".head.list").addClass("fixed");
             $('body').css('margin-top', 'calc(60px + 16px + 38px)');
         } else {
-            $(".headlist").removeClass("fixed");
+            $(".head.list").removeClass("fixed");
             $('body').css('margin-top', 'calc(60px + 16px)');
         }
     });
