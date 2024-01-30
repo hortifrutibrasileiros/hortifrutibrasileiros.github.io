@@ -310,7 +310,7 @@ footer div {
     font-family: 'Ubuntu Mono';
     float: left;
 }
-footer button {
+footer button, .footlist button {
     position: absolute;
     margin: 0 auto;
     left: 0;
@@ -417,7 +417,7 @@ input:focus {
     box-sizing: border-box;
     border-top: 1px solid #dce1e7;
 }
-.popup .foot button, .footlist button {
+.popup .foot button {
     border: none;
     height: 40px;
     border-radius: 12px;
