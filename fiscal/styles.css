@@ -190,6 +190,7 @@ section .headlist {
 
 
 section .footlist {
+    position: relative;
     width: 100%;
     height: 32px;
     max-width: 640px;
