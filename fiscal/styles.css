@@ -220,8 +220,6 @@ section {
     color: #1f2328;
     overflow: hidden;
     background: white;
-    border--radius: 12px;
-    border-top-left-radius: 12px;
 }
 .item {
     height: 36px;
