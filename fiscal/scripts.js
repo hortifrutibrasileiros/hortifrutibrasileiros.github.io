@@ -19,9 +19,7 @@ $(document).ready(function () {
         var inputValue1 = parseFloat($item.find('.quant').val().replace(',', '.'));
         var inputValue2 = parseFloat($item.find('.punit').val().replace(',', '.'));
         var valor = inputValue1 * inputValue2;
-
         $item.find('.valor').text(valor.toFixed(2));
-
         if (isNaN(inputValue1) || isNaN(inputValue2)) {
             $item.find('.valor').text('-');
         }
@@ -45,7 +43,6 @@ $(document).ready(function () {
                 count++;
             }
         });
-
         $('.itens').text(count);
         totalItens = count;
     }
@@ -99,7 +96,6 @@ $(document).ready(function () {
             var discr = $("#discrim").val();
             var discrim = capitalizeFirst(discr);
             var punit = $("#punit").val();
-
             if (unitType.trim() === "" || discrim.trim() === "" || punit.trim() === "") {
                 $('.aviso').text('Preencha todos os campos!');
                 $('.aviso').fadeIn();
@@ -108,13 +104,11 @@ $(document).ready(function () {
                 }, 3000);
                 return;
             }
-
             var newItem = {
                 unitType: unitType,
                 discrim: discrim,
                 punit: punit
             };
-
             var newDiv = gerarDiv(newItem);
             $('section #list').append(newDiv);
             $("#unitType, #discrim, #punit").val("");
@@ -141,7 +135,6 @@ $(document).ready(function () {
             $('body').css('margin-top', 'calc(60px + 16px)');
         }
     });
-
 
     $('#search input').on('input', function() {
         // Verifica se o input está vazio
@@ -189,7 +182,6 @@ $(document).ready(function () {
         abrirPopup(".popup.add", '.popup.add input#discrim');
     });
 
-    
     $(".finish, .popup.nome input").on("click keypress", function (event) {
         if ((event.type === "click" && event.target.tagName !== "INPUT") ||
             (event.type === "keypress" && event.which === 13)) {
@@ -231,7 +223,6 @@ $(document).ready(function () {
         }
     });
 
-    
 $('button.sharePic').click(function () {
     $('.aviso').text('Compartilhe sua imagem...');
     $('.aviso').fadeIn();
@@ -293,7 +284,6 @@ setInterval(atualizarDataHora, 1000);
 
 window.onhashchange = function (e) {
     var oldURL = e.oldURL.split('#')[1];
-
     if (oldURL == 'popup') {
         $("#blur").hide();
         $(".popup").removeClass('opened');
