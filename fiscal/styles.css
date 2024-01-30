@@ -382,7 +382,7 @@ input:focus {
 .left, .header div, .footer, .item .discrim {
     text-align: left !important;
 }
-.item .discrim, .headlist div.left {
+.item .discrim, .head.list div.left {
     width: 37%;
 }
 .header div {
