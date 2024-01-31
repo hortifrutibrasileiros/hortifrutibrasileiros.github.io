@@ -86,7 +86,7 @@ $(document).ready(function () {
                 total += valor;
             }
         });
-        $('.total').text(total.toFixed(2).replace('.', ','));
+        $('.total').text('R$' + total.toFixed(2).replace('.', ','));
     }
 
     $(".addItem, #punit").on("click keypress", function (event) {
@@ -119,6 +119,8 @@ $(document).ready(function () {
         }
     });
 
+    $('.total').text('R$ 0,00');
+
     $('.quant, .punit').on('input', function() {
         var valorAtual = $(this).val();
         var novoValor = valorAtual.replace(/,/g, '.');
@@ -135,18 +137,23 @@ $(document).ready(function () {
             $('body').css('margin-top', 'calc(60px + 16px)');
         }
 
-        var scrollHeight = $(document).height();
-        var scrollPosition = $(window).height() + $(window).scrollTop();
 
-        if (scrollHeight - scrollPosition < scrollDistance) {
-            $('.foot').removeClass('relative');
-        } else {
-            $('.foot').addClass('relative');
-        }
-        if ($(this).scrollTop() < scrollDistance) {
-            $('.foot').addClass('fixed');
-        }
+            var windowHeight = $(window).height();
+            var documentHeight = $(document).height();
+            var scrollBottom = documentHeight - windowHeight - $(this).scrollTop();
+        
+            if (scrollBottom > scrollDistance) {
+                $(".foot.list").addClass("relative");
+                $('body').css('margin-bottom', 'calc(38px + 6px + 0px)');
+            } else {
+                $(".foot.list").removeClass("relative");
+                $('body').css('margin-bottom', 'calc(16px + 0px)');
+            }
     });
+
+    $(".button.refresh").click(function() {
+        location.reload();
+      });
 
     $('#search input').on('input', function() {
         // Verifica se o input está vazio
@@ -158,7 +165,7 @@ $(document).ready(function () {
       });
 
       $('button.clean').on('click', function() {
-        $('#search input').val('');
+        $('#search input').val('').focus();
         $(this).hide();
         $('.item').show();
       });
@@ -195,6 +202,7 @@ $(document).ready(function () {
     });
 
     $(".finish, .popup.nome input").on("click keypress", function (event) {
+        $('.sharePic').css('animation', 'none');
         if ((event.type === "click" && event.target.tagName !== "INPUT") ||
             (event.type === "keypress" && event.which === 13)) {
             var nome = $(".popup.nome input").val();
@@ -217,6 +225,8 @@ $(document).ready(function () {
                     newRow.append('<td class="left">' + discrim + '</td>');
                     newRow.append('<td class="right">' + inputValue2 + '</td>');
                     newRow.append('<td class="right">' + valor + '</td>');
+
+                    $('.picIt').removeClass('share');
 
                     $('#tabela').append(newRow);
                     setTimeout(function () {
@@ -242,7 +252,8 @@ $('button.sharePic').click(function () {
         $('.aviso').fadeOut();
     }, 3000);
 
-    $('#picIt').css('padding', '20px');
+    $('.picIt').addClass('share');
+
     setTimeout(function () {
         sharePrint();
     }, 500);
@@ -251,10 +262,11 @@ $('button.sharePic').click(function () {
 });
 
 async function sharePrint() {
-    const picIt = document.getElementById('picIt');
+    const picIt = $('.picIt');
+    const resultPara = $('.aviso');
 
     try {
-        const canvas = await html2canvas(picIt);
+        const canvas = await html2canvas(picIt[0]);
         const dataUrl = canvas.toDataURL();
         const blob = await fetch(dataUrl).then(res => res.blob());
 
@@ -266,20 +278,19 @@ async function sharePrint() {
             title: 'Imprimir',
             files: [file]
         };
-        
-        const resultPara = document.querySelector('.aviso');
 
         await navigator.share(shareData);
-        resultPara.textContent = 'Selecione o app de impressão...';
-        $('.aviso').fadeIn();
+        resultPara.text('Selecione o app de impressão...');
+        resultPara.fadeIn();
         setTimeout(function () {
-            $('.aviso').fadeOut();
+            resultPara.fadeOut();
         }, 3000);
         $('.sharePic').css('animation', 'moveButton 1s infinite');
     } catch (e) {
-        resultPara.textContent = 'Error: ' + e;
+        resultPara.text('Error: ' + e);
     }
 }
+
 
 function atualizarDataHora() {
     var agora = new Date();

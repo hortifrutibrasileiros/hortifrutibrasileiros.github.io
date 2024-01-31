@@ -22,7 +22,6 @@
     visibility: hidden;
     z-index: -10;
 }
-html, body { overscroll-behavior-y: contain; }
 p {margin:0}
 * {
     user-select: none;
@@ -54,11 +53,12 @@ input::placeholder {
 body {
     margin: 0 auto;
     margin-top: calc(60px + 16px);
-    margin-bottom: calc(48px + 16px);
+    margin-bottom: calc(16px + 0px);
     font-family: 'Raleway', Arial, sans-serif;
     background: #ffffff;
     color: #191d17;
     max-width: 640px;
+    touch-action: none;
 }
 /* header */
 header {
@@ -71,15 +71,6 @@ header {
     border-bottom: 2px solid #dce1e7;
     box-sizing: border-box;
 }
-header .buttons {
-    position: absolute;
-    margin: auto;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    width: calc(32px + 12px + 32px);
-}
 header > div {
     position: relative;
     height: 100%;
@@ -89,21 +80,21 @@ header > div {
 header #logo {
     position: absolute;
     left: 0;
-    height: 41px;
-    width: 50px;
+    height: 44px;
+    width: 44px;
     margin: auto;
     top: 0;
     bottom: 0;
     border-radius: 8px;
-    background: url(icon.png);
+    background: url(icon.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 header #search {
     position: absolute;
-    left: calc(50px + 12px);
-    width: calc(100% - 58px - 16px - 20px - 76px);
+    left: calc(44px + 12px);
+    width: calc(100% - 38px - 8px - 58px - 16px - 20px - 76px);
     height: 38px;
     margin: auto;
     top: 0;
@@ -118,7 +109,7 @@ header .concluir {
     top: 0;
     bottom: 0;
     border-radius: 8px;
-    background: #118429;
+    background: #189304;
     color: #ffffff;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -145,7 +136,7 @@ header .concluir {
     background: #ffffff;
     border: 1px solid #bababa;
 }
-header .custom {
+header .button {
     position: absolute;
     height: 38px;
     width: 38px;
@@ -157,8 +148,13 @@ header .custom {
     border: 1px solid #bababa;
     border-radius: 8px;
     box-sizing: border-box;
-    right: calc(44px + 16px);
     color: #656d76;
+}
+.button.custom {
+    right: calc(44px + 16px);
+}
+.button.refresh {
+    right: calc(38px + 12px + 44px + 16px);
 }
 /* section */
 section {
@@ -188,10 +184,27 @@ section .head.list {
 section .foot.list {
     border-top: 1px solid #dce1e7;
 }
+section .total, .itens {
+    font-family: 'Ubuntu Mono';
+    font-size: 14px;
+}
 .head.list.fixed {
     position: fixed;
+    margin: auto;
     top: 60px;
     left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 0;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+.foot.list.relative {
+    position: fixed;
+    margin: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     border-radius: 0;
     padding: 0 16px;
@@ -211,19 +224,10 @@ section .foot.list {
     padding-left: 10px;
     box-sizing: border-box;
 }
-.foot.list.relative {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-radius: 0;
-    padding: 0 16px;
-    box-sizing: border-box;
-}
 /* section > item */
 .item {
-    height: 36px;
-    line-height: 36px;
+    height: 40px;
+    line-height: 40px;
     font-family: 'Raleway';
     border-bottom: 1px solid #dce1e7;
     font-size: 14px;
@@ -289,7 +293,7 @@ footer button, .foot.list button {
     right: 0;
     height: 100%;
     width: 1px;
-    background: #dce1e7;
+    background: #bababa;
     padding: 0;
 }
 /* popups */
@@ -307,7 +311,7 @@ footer button, .foot.list button {
     padding-top: 48px;
     padding-bottom: 73px;
     box-shadow: 0 0 32px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 2;
 }
 .popup.opened {
     top: 16px;
@@ -325,7 +329,16 @@ footer button, .foot.list button {
     font-size: 15px;
     border-bottom: 1px solid #dce1e7;
 }
-.popup .head button {position: absolute;height: 32px;width: 32px;border-radius: 8px;right: 16px;margin: auto;top: 0;bottom: 0;background: none;}
+.popup .head button {
+    position: absolute;
+    height: 32px;width: 32px;
+    border-radius: 8px;
+    right: 16px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    background: none;
+}
 .popup .content {
     position: relative;
     padding: 16px;
@@ -359,25 +372,29 @@ input:focus {
 }
 .popup .foot button {
     border: none;
-    height: 40px;
+    height: 44px;
     border-radius: 12px;
-    width: 40px;
+    width: 43px;
     float: right;
     font-weight: 700;
     box-sizing: border-box;
-    background-color: #648e50;
+    background-color: #189304;
     color: #fff;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 /* html2canvas */
-#picIt {
+.picIt {
     font-family: 'Ubuntu Mono', monospace;
     width: 280px;
     padding-bottom: 20px;
     position: absolute;
     left: -100vh;
 }
-.header, .copy, .footer p, .item div, .item div input {
+.picIt.share {
+    padding: 20px;
+    background-color: #fffeea;
+}
+.header, .copy, .footer p, .footer div, .item div, .item div input {
     text-align: center;
 }
 .left, .header div, .footer, .item .discrim {
@@ -392,7 +409,11 @@ input:focus {
     margin-bottom: 16px;
 }
 .footer {
-    margin-top: 7px;
+    margin-top: 8px;
+}
+.footer div {
+    font-size: 18px;
+    margin-bottom: 7px;
 }
 .right {
     text-align: right;
@@ -453,7 +474,9 @@ hr {
     height: 100vh;
     background: black;
     top: 0;
+    left: 0;
     opacity: 0.2;
+    z-index: 1;
 }
 #unitType {
     width: calc(50% - 6px);
@@ -480,28 +503,24 @@ label.right {
     text-align: left;
 }
 button.sharePic {
-    width: 42px;
-    height: 42px;
+    width: 48px;
+    height: 48px;
     background: #f67f12;
     position: fixed;
     margin: auto;
     top: 0;
     bottom: 0;
-    right: -42px;
-    border-top-left-radius: 21px;
-    border-bottom-left-radius: 21px;
+    right: -48px;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     color: #ffffff;
     transform: translateY(-50%);
     cursor: pointer;
     transition: right 0.1s ease;
-  }
-  @keyframes moveButton {
-    0%, 100% {
-      right: -10px;
-    }
-    50% {
-      right: 0;
-    }
-  }
+}
+@keyframes moveButton {
+    0%, 100% { right: -10px; }
+    50% { right: 0; }
+}
 
