@@ -4,7 +4,7 @@ self.addEventListener('install', (event) => {
       return cache.addAll([
         'index.html',
         'manifest.json',
-        'icon.png',
+        'icons-192.png',
         'BHFiscalFont.tt',
         'icon.svg',
         'styles.css',
