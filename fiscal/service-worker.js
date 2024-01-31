@@ -5,7 +5,7 @@ self.addEventListener('install', (event) => {
         'index.html',
         'manifest.json',
         'icons-192.png',
-        'BHFiscalFont.tt',
+        'BHFiscalFont.ttf',
         'icon.svg',
         'styles.css',
         'list.js',
