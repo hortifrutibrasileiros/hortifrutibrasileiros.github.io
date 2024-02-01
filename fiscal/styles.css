@@ -31,21 +31,21 @@ p {margin:0}
     font-size: 14px;
 }
 a { text-decoration: none}
-button, iframe, input {border: none;background: none;}
-input {
+button, iframe {background: none;border:none}
+input[type="text"] {
     outline: none;
     -webkit-appearance: none;
     caret-color: rgb(53, 156, 53);
     box-sizing: border-box;
     font-size: 16px;
     background: #f6f8fa;
+    border: none;
 }
-div input {
+div input[type="text"] {
     width: 100%;
     padding: 0;
-    padding-left: 16px;
 }
-input::placeholder {
+input[type="text"]::placeholder {
     font-size: 14px;
 }
 
@@ -111,6 +111,11 @@ header .concluir {
     background: #189304;
     color: #ffffff;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.concluir.off {
+    background: #bebebe;
+    color: #656d76;
+    box-shadow: none;
 }
 #search button {
     width: 38px;
@@ -260,12 +265,6 @@ section .total, .itens {
 .item .valor {
     font-family: 'Ubuntu Mono';
 }
-div input {
-    width: 100%;
-    padding: 0;
-    border: none;
-    padding-left: 16px;
-}
 /* FOOTER */
 footer {
     position: fixed;
@@ -345,16 +344,17 @@ footer button, .foot.list button {
     font-family: 'Raleway';
     overflow: auto;
 }
-.popup input {
+.popup input[type="text"] {
     height: 38px;
     border-radius: 8px;
     margin: 6px 0;
     border: 1px solid #dce1e7;
+    padding-left: 16px;
 }
-.popup.nome input {
+.popup.nome input[type="text"] {
     text-transform: capitalize;
 }
-input:focus {
+input[type="text"]:focus {
     border: 1px solid #1f2328 !important;
     outline: none;
     background: #f6f8fa;
@@ -393,7 +393,7 @@ input:focus {
     padding: 20px;
     background-color: #fffeea;
 }
-.header, .copy, .footer p, .footer div, .item div, .item div input {
+.header, .copy, .footer p, .footer div, .item div, .item div input[type="text"] {
     text-align: center;
 }
 .left, .header div, .footer, .item .discrim {
@@ -402,17 +402,39 @@ input:focus {
 .item .discrim, .head.list div.left {
     width: 37%;
 }
-.header div {
-    width: 100%;
+.header {
+    height: 80px;
     margin-top: 7px;
     margin-bottom: 16px;
+    position: relative;
+}
+.header .logo {
+    font-family: 'BHf';
+    font-size: 80px;
+    width: 80px;
+}
+.header .data {
+    width: calc(100% - 80px - 8px);
+    font-size: 16px;
+    position: absolute;
+    right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    height: fit-content;
+    line-height: 17px;
 }
 .footer {
     margin-top: 8px;
 }
-.footer div {
+.footer > div:first-child {
     font-size: 18px;
-    margin-bottom: 7px;
+    margin-bottom: 12px;
+}
+.footer #qr-code-container {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 8px 0;
 }
 .right {
     text-align: right;
@@ -523,3 +545,44 @@ button.sharePic {
     50% { right: 0; }
 }
 
+
+
+
+
+/* Estilo para o checkbox */
+input[type="checkbox"] {
+    display: none;
+  }
+  
+  /* Estilo para o rótulo (substituto visual do checkbox) */
+  input[type="checkbox"] + label {
+    position: relative;
+    padding-left: calc(26px + 12px); /* Espaçamento à esquerda para o rótulo */
+    cursor: pointer;
+    display: inline-block;
+    line-height: 28px;
+  }
+  
+  /* Estilo para a aparência padrão do checkbox */
+  input[type="checkbox"] + label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    color: #1f2328;
+    border: 2px solid;
+    border-radius: 8px;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo quando o checkbox está marcado */
+  input[type="checkbox"]:checked + label:before {
+    content: "2";
+    font-family: 'BHf';
+    text-align: center;
+    background-color: #dce1e7;
+  }
+  

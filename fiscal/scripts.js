@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
 
     function gerarDiv(item) {
@@ -14,38 +16,81 @@ $(document).ready(function () {
     });
     var totalItens = 0;
 
-    function calcularResultado() {
-        var $item = $(this).closest('.item');
-        var inputValue1 = parseFloat($item.find('.quant').val().replace(',', '.'));
-        var inputValue2 = parseFloat($item.find('.punit').val().replace(',', '.'));
-        var valor = inputValue1 * inputValue2;
-        $item.find('.valor').text(valor.toFixed(2));
-        if (isNaN(inputValue1) || isNaN(inputValue2)) {
-            $item.find('.valor').text('-');
-        }
+// Definir formatCurrency fora da função calcularResultado
+function formatCurrency(input) {
+    input = input.replace(/\D/g, '');
+    input = (input / 100).toFixed(2);
+    return input;
+}
+$('.punit').on('input', function() {
+    this.value = formatCurrency(this.value);
+});
 
-        atualizarTotal();
-        atualizarContagemItens();
+function calcularResultado() {
+    var $item = $(this).closest('.item');
+    var inputValue1 = $item.find('.quant').val().replace(',', '.');
+    var rawPixValue = $item.find('.punit').val();
+    var inputValue2 = parseFloat(rawPixValue.trim().replace(',', '.')) || 0;
 
-        if (inputValue1 > 0) {
-            $item.css('background-color', '#eeeeee');
-        } else {
-            $item.css('background-color', '');
-        }
-        atualizarContagemItens();
+    var valor = parseFloat(inputValue1) * parseFloat(inputValue2);
+    $item.find('.valor').text(valor.toFixed(2));
+    
+    if (isNaN(parseFloat(inputValue1)) || isNaN(parseFloat(inputValue2))) {
+        $item.find('.valor').text('-');
     }
 
-    function atualizarContagemItens() {
-        var count = 0;
-        $('.quant').each(function () {
-            var inputValue = parseFloat($(this).val().replace(',', '.'));
-            if (!isNaN(inputValue) && inputValue > 0) {
-                count++;
-            }
+    atualizarTotal();
+    atualizarContagemItens();
+
+    if (parseFloat(inputValue1) > 0) {
+        $item.css('background-color', '#eeeeee');
+    } else {
+        $item.css('background-color', '');
+    }
+
+    atualizarContagemItens();
+}
+
+
+function exibirAviso(mensagem) {
+    $('.aviso').text(mensagem).fadeIn();
+    setTimeout(function () {
+        $('.aviso').fadeOut();
+    }, 3000);
+}
+
+function atualizarContagemItens() {
+    var count = 0;
+    $('.quant').each(function () {
+        var inputValue = parseFloat($(this).val().replace(',', '.'));
+        if (!isNaN(inputValue) && inputValue > 0) {
+            count++;
+        }
+    });
+
+    $('.itens').text(count);
+    totalItens = count;
+
+    var concluirElement = $('.concluir');
+    if (count >= 1) {
+        concluirElement.removeClass('off');
+        $(".concluir").on("click", function () {
+            abrirPopup(".popup.nome", '.popup.nome input');
         });
-        $('.itens').text(count);
-        totalItens = count;
+    } else {
+        concluirElement.addClass('off');
+        $(".concluir").off("click");
+        $(".concluir").click(function() {
+            exibirAviso('Nenhum item selecionado');
+        });
     }
+}
+
+$(".concluir").click(function() {
+    if ($(this).hasClass('off')) {
+        exibirAviso('Nenhum item selecionado');
+    }
+});
 
     $('.quant, .punit').on('input', calcularResultado);
 
@@ -97,11 +142,7 @@ $(document).ready(function () {
             var discrim = capitalizeFirst(discr);
             var punit = $("#punit").val();
             if (unitType.trim() === "" || discrim.trim() === "" || punit.trim() === "") {
-                $('.aviso').text('Preencha todos os campos!');
-                $('.aviso').fadeIn();
-                setTimeout(function () {
-                    $('.aviso').fadeOut();
-                }, 3000);
+                exibirAviso('Preencha todos os campos!');
                 return;
             }
             var newItem = {
@@ -121,7 +162,7 @@ $(document).ready(function () {
 
     $('.total').text('R$ 0,00');
 
-    $('.quant, .punit').on('input', function() {
+    $('.quant').on('input', function() {
         var valorAtual = $(this).val();
         var novoValor = valorAtual.replace(/,/g, '.');
         $(this).val(novoValor);
@@ -193,13 +234,12 @@ $(document).ready(function () {
         $(selector).addClass('opened');
         $(inputSelector).focus();
     }
-    $(".concluir").on("click", function () {
-        abrirPopup(".popup.nome", '.popup.nome input');
-    });
+ 
 
     $("header .custom").on("click", function () {
         abrirPopup(".popup.add", '.popup.add input#discrim');
     });
+
 
     $(".finish, .popup.nome input").on("click keypress", function (event) {
         $('.sharePic').css('animation', 'none');
@@ -208,7 +248,7 @@ $(document).ready(function () {
             var nome = $(".popup.nome input").val();
             var nomeCliente = capitalize(nome);
 
-            $('#tabela tr:not(.head)').empty();
+            $('#tabela tr:not(.head)').remove();
             $('.item').each(function () {
                 var $item = $(this);
                 var inputValue1 = $item.find('.quant').val().replace('.', ',');
@@ -229,9 +269,6 @@ $(document).ready(function () {
                     $('.picIt').removeClass('share');
 
                     $('#tabela').append(newRow);
-                    setTimeout(function () {
-                        sharePrint();
-                    }, 500);
                 }
             });
 
@@ -241,29 +278,26 @@ $(document).ready(function () {
                 $("#cliente").text(nomeCliente);
             }
 
+            generateQRCode();
+            sharePrint();
+
             fecharPopup();
         }
     });
 
 $('button.sharePic').click(function () {
-    $('.aviso').text('Compartilhe sua imagem...');
-    $('.aviso').fadeIn();
-    setTimeout(function () {
-        $('.aviso').fadeOut();
-    }, 3000);
+    $('#qr-code-container').empty();
+    $('.pixPay span').html('');
+    exibirAviso('Compartilhe sua imagem...');
 
     $('.picIt').addClass('share');
-
-    setTimeout(function () {
         sharePrint();
-    }, 500);
 });
 
 });
 
 async function sharePrint() {
     const picIt = $('.picIt');
-    const resultPara = $('.aviso');
 
     try {
         const canvas = await html2canvas(picIt[0]);
@@ -280,14 +314,13 @@ async function sharePrint() {
         };
 
         await navigator.share(shareData);
-        resultPara.text('Selecione o app de impressão...');
-        resultPara.fadeIn();
-        setTimeout(function () {
-            resultPara.fadeOut();
-        }, 3000);
         $('.sharePic').css('animation', 'moveButton 1s infinite');
     } catch (e) {
         resultPara.text('Error: ' + e);
+              resultPara.fadeIn();
+        setTimeout(function () {
+            resultPara.fadeOut();
+        }, 30000);
     }
 }
 
