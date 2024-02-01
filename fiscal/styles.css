@@ -58,6 +58,7 @@ body {
     background: #ffffff;
     color: #191d17;
     max-width: 640px;
+    overscroll-behavior-y: contain;
 }
 /* header */
 header {
