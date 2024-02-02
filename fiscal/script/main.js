@@ -426,7 +426,7 @@ function displayQRCode(payload) {
                 width: 228,
                 height: 228,
             });
-            $('.pixPay span').html('<button class="icon">q</button>Pague por PIX:');
+            $('.pixPay span').html('<button class="icon i_scan"></button>Pague por PIX:');
         } else {
             $('#qr-code-container').empty();
             $('.pixPay span').html('');
