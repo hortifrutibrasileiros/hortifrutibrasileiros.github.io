@@ -1,0 +1,72 @@
+{
+  "short_name": "ADM Brasileiros Hortifruti",
+  "name": "ADM Brasileiros Hortifruti",
+  "icons": [
+    {
+      "src": "image/icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "image/icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "image/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "index.html",
+  "background_color": "#f6f8fa",
+  "display": "standalone",
+  "theme_color": "#f6f8fa",
+  "shortcuts": [
+    {
+      "name": "Editar lista de itens",
+      "short_name": "Editar lista",
+      "description": "Editar lista de items da loja",
+      "url": "list.html",
+      "icons": [{ "src": "image/list_icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Baixar App driver",
+      "short_name": "App driver",
+      "description": "Aplicativo de impressão móvel",
+      "url": "driver.html",
+      "icons": [{ "src": "image/driver_icon.png", "sizes": "192x192" }]
+    }
+  ],
+  "description": "Apliactivo para serviço de Cupom Fiscal para administradores da loja física Brasileiros Hortifruti.",
+  "screenshots": [
+    {
+      "src": "image/screenshot-desktop.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "platform": "web",
+      "form_factor": "wide"
+    },
+    {
+      "src": "image/screenshot-mobile-1.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "platform": "web",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "image/screenshot-mobile-2.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "platform": "web",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "image/screenshot-mobile-3.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "platform": "web",
+      "form_factor": "narrow"
+    }
+  ]
+}
