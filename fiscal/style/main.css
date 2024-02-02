@@ -240,8 +240,8 @@ section .total, .itens {
     border-left: none;
 }
 .item .quant::placeholder {
-    font-family: BHf;
-    font-size: 10px;
+    font-family: BHicons;
+    font-size: 14px;
 }
 .item .discrim {
     padding-left: 10px;
