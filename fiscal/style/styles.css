@@ -1,10 +1,4 @@
 /* pre-format oi */
-@font-face {
-    font-family: 'BHf';
-    src: url('BHFiscalFont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
 ::-webkit-scrollbar {
     background: transparent;
     color: transparent;
@@ -85,7 +79,7 @@ header #logo {
     top: 0;
     bottom: 0;
     border-radius: 8px;
-    background: url(image/icon.svg);
+    background: url(../image/icon.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
