@@ -3,7 +3,6 @@ self.addEventListener('install', (event) => {
     caches.open('brasileiros-hortifruti-fiscal-cache').then((cache) => {
       return cache.addAll([
         'index.html',
-        'BHFiscalFont.ttf',
         'image/icon.svg',
         'style/main.css',
         'script/jquery-3.6.4.min.js',
