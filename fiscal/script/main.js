@@ -335,7 +335,7 @@ $('.popup.share input').on('input', function(){
             if (nomeCliente.trim() === "") {
                 $('.popup.share .hidden').fadeIn();
                 $('.popup.share .block, .none').hide();
-                $('.popup.share .o_nome').focus();
+                $('.popup.share input').focus();
             } else {
                 pegarNome();
                 gerarTabela();
