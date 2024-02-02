@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "BHicons";
+  src: url("../font/BHicons/BHicons.woff2");
+  src: url("../font/BHicons/BHicons.ttf") format("truetype"),
+       url("../font/BHicons/BHicons.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	@font-face {
+	font-family: "BHicons";
+	src: url("../font/BHicons/BHicons.svg") format("svg");
+	}
+}
+
+[class^="icone-"]:before, [class*=" icone-"]:before,
+[class^="icone-"]:after, [class*=" icone-"]:after {   
+	font-family: BHicons;
+	font-style: normal;
+}
+
+.i_logo:before { content: "a"; }
+.i_print:before { content: "b"; }
+.i_plus:before { content: "c"; }
+.i_share:before { content: "d"; }
+.i_refresh:before { content: "e"; }
+.i_check:before { content: "f"; }
+.i_receipt:before { content: "g"; }
+.i_copy:before { content: "h"; }
+.i_whatsapp:before { content: "i"; }
+.i_heart:before { content: "j"; }
+.i_scan:before { content: "k"; }
+.i_user:before { content: "l"; }
+.i_clock:before { content: "m"; }
+.i_search:before { content: "n"; }
+.i_close:before { content: "o"; }
+.i_warning:before { content: "p"; }
