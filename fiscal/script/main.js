@@ -142,9 +142,6 @@ $("button.concluir").click(function() {
         $('.total').text('R$' + total.toFixed(2).replace('.', ','));
     }
 
-
-
-
     $('#discrim').on('input', function() {
         var valorInput = $(this).val();
         if(valorInput.length > 0){
@@ -269,9 +266,15 @@ $("button.concluir").click(function() {
         abrirPopup(".popup.share");
     });
 
-
+$('.popup.concluir input').on('input', function(){
+        $('.popup.share input').val($(this).val());
+      });
+$('.popup.share input').on('input', function(){
+        $('.popup.concluir input').val($(this).val());
+      });
+    
     function pegarNome() {
-        var nome = $(".popup input.o_nome").val();
+        var nome = $(".popup.concluir input").val();
         var nomeCliente = capitalize(nome);
         if (nomeCliente.trim() === "") {
             $("#cliente").text('Não informado');
