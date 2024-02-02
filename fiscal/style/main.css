@@ -617,8 +617,8 @@ input[type="checkbox"] {
   
   /* Estilo quando o checkbox está marcado */
   input[type="checkbox"]:checked + label:before {
-    content: "2";
-    font-family: 'BHf';
+    content: "f";
+    font-family: 'BHicons';
     text-align: center;
     background-color: #dce1e7;
   }
