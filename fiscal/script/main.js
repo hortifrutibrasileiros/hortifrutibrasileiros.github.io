@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
 
     function gerarDiv(item) {
@@ -5,7 +7,7 @@ $(document).ready(function () {
         newDiv.append('<div><input type="text" inputmode="numeric" class="quant" maxlength="6" placeholder="+" /><a hidden>' + item.unitType + '</a></div>');
         newDiv.append('<div class="discrim">' + item.discrim + '</div>');
         newDiv.append('<div><input type="text" inputmode="numeric" class="punit" maxlength="6" value="' + item.punit + '" /></div>');
-        newDiv.append('<div class="valor"> + item.total + </div>');
+        newDiv.append('<div class="valor">-</div>');
         return newDiv;
     }
 
@@ -20,7 +22,7 @@ function formatCurrency(input) {
     input = (input / 100).toFixed(2);
     return input;
 }
-$('.punit, #valor').on('input', function() {
+$('.punit').on('input', function() {
     this.value = formatCurrency(this.value);
 });
 
@@ -48,6 +50,12 @@ function calcularResultado() {
 
     atualizarContagemItens();
 }
+
+
+
+
+
+
 
 function exibirAviso(mensagem) {
     var avisoDiv = $('<div class="aviso"><button class="icon i_warning"></button><span></span></div>');
@@ -146,14 +154,13 @@ $("button.concluir").click(function() {
 
 
 
-    $(".addItem, #total").on("click keypress", function (event) {
+    $(".addItem, #punit").on("click keypress", function (event) {
         if ((event.type === "click" && event.target.tagName !== "INPUT") ||
             (event.type === "keypress" && event.which === 13)) {
             var unitType = $("#unitType").val().toLowerCase();
             var discr = $("#discrim").val();
             var discrim = capitalizeFirst(discr);
             var punit = $("#punit").val();
-            var total = $("#total").val();
             if (discrim.trim() === "") {
                 exibirAviso('Preencha o nome do produto!');
                 $("#discrim").focus();
@@ -162,12 +169,11 @@ $("button.concluir").click(function() {
             var newItem = {
                 unitType: unitType,
                 discrim: discrim,
-                punit: punit,
-                total: total
+                punit: punit
             };
             var newDiv = gerarDiv(newItem);
             $('section #list').append(newDiv);
-            $("#unitType, #discrim, #punit, #total").val("");
+            $("#unitType, #discrim, #punit").val("");
             newDiv.find('.quant, .punit').on('input', calcularResultado);
 
             fecharPopup()
@@ -557,4 +563,4 @@ window.onhashchange = function (e) {
 
 function href(web) {
     window.location.href = web;
-    }
+}
