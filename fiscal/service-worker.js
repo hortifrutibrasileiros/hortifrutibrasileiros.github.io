@@ -5,13 +5,22 @@ self.addEventListener('install', (event) => {
         'index.html',
         'BHFiscalFont.ttf',
         'image/icon.svg',
-        'styles.css',
+        'style/main.css',
         'script/jquery-3.6.4.min.js',
         'script/html2canvas.min.js',
         'script/qrcode.min.js',
         'script/paypix.js',
         'script/list.js',
         'script/main.js',
+        'font/BHicons/BHicons.woff2',
+        'font/BHicons/BHicons.ttf',
+        'font/BHicons/BHicons.svg',
+        'font/UbuntuMono/1.woff2',
+        'font/UbuntuMono/2.woff2',
+        'font/UbuntuMono/3.woff2',
+        'font/UbuntuMono/4.woff2',
+        'font/UbuntuMono/5.woff2',
+        'font/UbuntuMono/6.woff2',
       ]);
     })
   );
