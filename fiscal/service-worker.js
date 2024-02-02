@@ -5,6 +5,8 @@ self.addEventListener('install', (event) => {
         'index.html',
         'image/icon.svg',
         'style/main.css',
+        'style/icons.css',
+        'style/font.css',
         'script/jquery-3.6.4.min.js',
         'script/html2canvas.min.js',
         'script/qrcode.min.js',
