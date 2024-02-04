@@ -117,9 +117,24 @@ function exibirAviso(mensagem) {
 }
 
 
+// Adicione um evento de click no documento para lidar com botões concluir, mesmo os dinâmicos
+$(document).on("click", "button.concluir:not(.off)", function() {
+    abrirPopup(".popup.concluir", '.popup.concluir input');
+});
+
+// Adicione um evento de click no documento para lidar com botões concluir que estão desabilitados
+$(document).on("click", "button.concluir.off", function() {
+    exibirAviso('Nenhum item selecionado');
+});
+
+// Adicione um evento de mudança nos inputs para atualizar a contagem e o estado do botão
+$('.quant input').on('change', function() {
+    atualizarContagemItens();
+});
+
 function atualizarContagemItens() {
     var count = 0;
-    $('.quant input').each(function () {
+    $('.quant input').each(function() {
         var inputValue = parseFloat($(this).val().replace(',', '.'));
         if (!isNaN(inputValue) && inputValue > 0) {
             count++;
@@ -130,25 +145,17 @@ function atualizarContagemItens() {
     totalItens = count;
 
     var concluirElement = $('button.concluir');
+
     if (count >= 1) {
         concluirElement.removeClass('off');
-        $("button.concluir").on("click", function () {
-            abrirPopup(".popup.concluir", '.popup.concluir input');
-        });
     } else {
         concluirElement.addClass('off');
-        $("button.concluir").off("click");
-        $("button.concluir").click(function() {
-            exibirAviso('Nenhum item selecionado');
-        });
     }
 }
 
-$("button.concluir").click(function() {
-    if ($(this).hasClass('off')) {
-        exibirAviso('Nenhum item selecionado');
-    }
-});
+// Chame a função inicialmente para garantir que o estado inicial seja configurado corretamente
+atualizarContagemItens();
+
 
     $('.quant input, .punit input').on('input', calcularResultado);
 
