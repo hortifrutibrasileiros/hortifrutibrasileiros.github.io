@@ -4,5 +4,6 @@ var data =
 'END.› CEASA, Campina Grande - Bloco B, Box 21';
 
 var description = 'Serviço de Cupom Fiscal para administradores da loja física Brasileiros Hortifruti.';
-var titleColor = '#ffffff';
+var titleColorLight = '#f6f6f6';
+var titleColorDark = '#212121';
 var title = 'Brasileiros Hortifruti - ADM';

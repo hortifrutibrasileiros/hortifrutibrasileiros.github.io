@@ -4,12 +4,33 @@ $(document).ready(function () {
 
     var metas = 
     '<meta name="description" content="' + description + '">'+
-    '<meta name="msapplication-TileColor" content="' + titleColor + '">' +
-    '<meta name="theme-color" content="' + titleColor + '">' +
     '<title>' + title + '</title>';
 
-    $(metas).appendTo('head');
     $('.picIt .header .data').html(data);
+    $(metas).appendTo('head');
+
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    function toggleDarkMode() {
+        const darkMode = darkModeMediaQuery.matches;
+        $('body').toggleClass('dark-mode', darkMode);
+
+        $('meta[name="msapplication-TileColor"]').remove();
+        $('meta[name="theme-color"]').remove();
+
+        if (darkMode) {
+            $('head').append('<meta name="msapplication-TileColor" content="' + titleColorDark + '">' +
+                            '<meta name="theme-color" content="' + titleColorDark + '">');
+        } else {
+            $('head').append('<meta name="msapplication-TileColor" content="' + titleColorLight + '">' +
+                            '<meta name="theme-color" content="' + titleColorLight + '">');
+        }
+    }
+    $(metas).appendTo('head');
+
+    toggleDarkMode();
+    darkModeMediaQuery.addListener(toggleDarkMode);
+
+    ///
 
     function gerarDiv(item) {
         var newItem = $('<div class="item"></div>');
@@ -465,13 +486,11 @@ $(".copyCode").click(function() {
 
 }); // end
 
-const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-function toggleDarkMode() {
-    const darkMode = darkModeMediaQuery.matches;
-    $('body').toggleClass('dark-mode', darkMode);
-}
-toggleDarkMode();
-darkModeMediaQuery.addListener(toggleDarkMode);
+
+
+
+
+
 
 });
 
