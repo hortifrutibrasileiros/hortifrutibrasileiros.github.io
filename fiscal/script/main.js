@@ -98,12 +98,22 @@ $('.popup.share .block div, header .button, button.concluir, .popup .foot button
 
 function exibirAviso(mensagem) {
     var avisoDiv = $('.aviso');
+
     avisoDiv.find('span').text(mensagem);
-    avisoDiv.addClass('opened');
-    setTimeout(function () {
-        avisoDiv.removeClass('opened');
-    }, 3000);
+
+    avisoDiv.css({
+        top: '-80px'
+    }).animate({
+        top: 0
+    }, 200, function () {
+        setTimeout(function () {
+            avisoDiv.animate({
+                top: '-80px'
+            }, 200);
+        }, 3000); // Após 3 segundos, inicia a animação para esconder o aviso
+    });
 }
+
 
 function atualizarContagemItens() {
     var count = 0;
@@ -171,7 +181,11 @@ $("button.concluir").click(function() {
 
     $('#discr').on('input', function() {
         var valorInput = $(this).val();
-        if(valorInput.length > 0){
+        var capitalizedInput = capitalizeFirst(valorInput);
+        
+        $(this).val(capitalizedInput); // Atualiza o valor do input com a versão capitalizada
+    
+        if (capitalizedInput.length > 0) {
             $('button.addItem').removeClass('off');
         } else {
             $('button.addItem').addClass('off');
@@ -248,28 +262,47 @@ $("button.concluir").click(function() {
     }
 
     function fecharPopup() {
-        $('.popup.share .hidden, .none').hide();
+        var $popup = $(".popup:visible");
+        var popupHeight = $popup.outerHeight();
+    
+        $popup.animate({
+            top: -popupHeight
+        }, 300, function () {
+            $popup.hide();
+        });
+    
         $("#blur").fadeOut();
-        $(".popup").fadeOut();
-        $('.popup.share .block').fadeIn();
         window.history.back();
     }
     
     $("#blur, .popup .head button").on("click", fecharPopup);
-
+    
     function abrirPopup(selector, inputSelector) {
-        $("#blur").show();
-        $(selector).fadeIn();
-        $(inputSelector).focus();
+        var $popup = $(selector);
+        var popupHeight = $popup.outerHeight();
+    
+        $popup.css({
+            top: -popupHeight,
+            display: 'block' // Garante que o popup está visível antes da animação
+        }).animate({
+            top: 0
+        }, 300);
+    
+        if (inputSelector) {
+            $(inputSelector).focus();
+        }
+    
+        $("#blur").fadeIn();
     }
- 
-
+    
     $("header .add").on("click", function () {
         abrirPopup(".popup.add", '.popup.add input#discr');
     });
+    
     $("header .share").on("click", function () {
         abrirPopup(".popup.share");
     });
+    
 
 $('.popup.concluir input').on('input', function(){
         $('.popup.share input').val($(this).val());
