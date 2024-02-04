@@ -29,8 +29,8 @@ body.dark-mode .popup input[type="text"]:focus {
     background-color: #565656;
 }
 body.dark-mode #search button.i_close,
-body.dark-mode .concluir.off,
 body.dark-mode .aviso,
+body.dark-mode .popup input[type="checkbox"] + label:before,
 body.dark-mode .popup input[type="text"] {
     background-color: #414141;
 }
@@ -58,7 +58,6 @@ body.dark-mode section .head.list {
 body.dark-mode,
 body.dark-mode section,
 body.dark-mode input[type="text"]:focus,
-body.dark-mode .popup input[type="checkbox"] + label:before,
 body.dark-mode div#search,
 body.dark-mode .popup .content {
     background-color: #212121;
@@ -111,7 +110,6 @@ body.dark-mode .item.active {
     color: #000000;
 }
 .popup .foot button,
-button.concluir,
 .item.active div,
 .item.active div input,
 .icon.i_whatsapp,
@@ -145,7 +143,6 @@ div#search,
     border-color: #e0e0e0 !important;
 }
 #search button.i_close,
-.concluir.off,
 .aviso,
 .popup,
 input[type="text"]:focus,
