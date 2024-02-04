@@ -47,7 +47,7 @@ body, header, section .list, section .shadow.foot, .popup, .aviso {
 /* STYLE */
 body {
     padding-top: 102px;
-    padding-bottom: 72px;
+    padding-bottom: 66px;
     overscroll-behavior-y: contain;
     transition: 0.2s;
 }
