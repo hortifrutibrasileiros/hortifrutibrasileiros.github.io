@@ -2,6 +2,8 @@
 
 $(document).ready(function () {
 
+    var titleColorLight = '#ffffff';
+    var titleColorDark = '#313131';
     var metas = 
     '<meta name="description" content="' + description + '">'+
     '<title>' + title + '</title>';
@@ -564,11 +566,22 @@ function atualizarDataHora() {
 atualizarDataHora();
 setInterval(atualizarDataHora, 1000);
 
+
+function fecharPopupUrl() {
+    var $popup = $(".popup:visible");
+    var popupHeight = $popup.outerHeight();
+    $popup.animate({
+        top: -popupHeight
+    }, 300, function () {
+        $popup.hide();
+    });
+    $("#blur").fadeOut();
+}
 window.onhashchange = function (e) {
     var oldURL = e.oldURL.split('#')[1];
     if (oldURL == 'popup') {
         $("#blur").hide();
-        $(".popup").fadeOut();
+        fecharPopupUrl();
         e.preventDefault();
     }
 };
