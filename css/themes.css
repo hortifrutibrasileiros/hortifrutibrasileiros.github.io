@@ -1,0 +1,201 @@
+body.dark-mode *,
+body.dark-mode .quant input:focus,
+body.dark-mode .punit input:focus,
+body.dark-mode .block div,
+body.dark-mode .block div button {
+    color: #ffffff;
+}
+body.dark-mode .click:after {
+    background-color: #ffffff !important;
+}
+body.dark-mode .head.list,
+body.dark-mode .foot.list .info,
+body.dark-mode .popup.add label,
+body.dark-mode .popup.share label {
+    color: #bebebe;
+}
+body.dark-mode input[type="text"]::placeholder,
+body.dark-mode .icon.i_search,
+body.dark-mode #noItens {
+    color: #888888;
+}
+body.dark-mode .head.list,
+body.dark-mode .popup .head,
+body.dark-mode #search button.i_close {
+    border-color: #585858 !important;
+}
+body.dark-mode .content .block div,
+body.dark-mode .popup input[type="text"]:focus {
+    background-color: #565656;
+}
+body.dark-mode #search button.i_close,
+body.dark-mode .concluir.off,
+body.dark-mode .aviso,
+body.dark-mode .popup input[type="text"] {
+    background-color: #414141;
+}
+body.dark-mode header,
+body.dark-mode .foot.list .info,
+body.dark-mode .popup,
+body.dark-mode .popup .head,
+body.dark-mode section .head.list::after,
+body.dark-mode .quant input:focus::after,
+body.dark-mode .punit input:focus::after,
+body.dark-mode #search button.i_close {
+    background-color: #313131;
+}
+body.dark-mode .foot .button {
+    fill: #313131;
+}
+body.dark-mode .item,
+body.dark-mode .quant input:focus,
+body.dark-mode .punit input:focus {
+    background-color: #252525;
+}
+body.dark-mode section .head.list {
+    background-color: #2d2d2d;
+}
+body.dark-mode,
+body.dark-mode section,
+body.dark-mode input[type="text"]:focus,
+body.dark-mode .popup input[type="checkbox"] + label:before,
+body.dark-mode div#search,
+body.dark-mode .popup .content {
+    background-color: #212121;
+}
+body.dark-mode header .button,
+body.dark-mode #search,
+body.dark-mode .item,
+body.dark-mode .popup input[type="text"],
+body.dark-mode input[type="text"]:focus,
+body.dark-mode .popup .foot,
+body.dark-mode input[type="checkbox"] + label:before {
+    border: none !important;
+}
+body.dark-mode .popup .foot button,
+body.dark-mode .none {
+    background-color: #54a634;
+}
+body.dark-mode input[type="text"] {
+    caret-color: #51ac05;
+}
+body.dark-mode .picIt * {
+    color: #000000 !important;
+}
+body.dark-mode .popup,
+body.dark-mode .aviso {
+    box-shadow: 0 0 32px rgba(0, 0, 0, 0.5);
+}
+body.dark-mode #blur {
+    opacity: 0.3;
+}
+body.dark-mode header .button {
+    background: rgb(255 255 255 / 16%);
+}
+body.dark-mode .item.active {
+    background-color: rgb(255 255 255 / 12%) !important;
+}
+
+
+
+
+
+
+
+
+*, .quant input:focus,
+.punit input:focus,
+.popup .content,
+.block div,
+.block div button {
+    color: #000000;
+}
+.popup .foot button,
+button.concluir,
+.item.active div,
+.item.active div input,
+.icon.i_whatsapp,
+.none {
+    color: #ffffff;
+}
+.click:after {
+    background-color: #000000;
+}
+.head.list div,
+.foot.list .info,
+.popup.add label,
+.popup.share label {
+    color: #737373;
+}
+input[type="text"]::placeholder,
+.icon.i_search,
+#noItens {
+    color: #777777;
+}
+div#search,
+.content .block div,
+.popup input[type="text"],
+.popup input[type="checkbox"] + label:before {
+    background-color: #e2e2e2;
+}
+.head.list,
+.popup .head,
+.popup .foot,
+#search button.i_close {
+    border-color: #e0e0e0 !important;
+}
+#search button.i_close,
+.concluir.off,
+.aviso,
+.popup,
+input[type="text"]:focus,
+body,
+section {
+    background-color: #ffffff;
+}
+header,
+.foot.list .info,
+.popup .head,
+section .head.list::after,
+.quant input:focus::after,
+.punit input:focus::after,
+#search button.i_close,
+.popup input[type="text"]:focus,
+.quant input:focus, .punit input:focus {
+    background-color: #f6f6f6;
+}
+.foot .button {
+    fill: #f1f1f1;
+}
+.item {
+    background-color: #f5f5f5;
+}
+section .head.list {
+    background-color: #f0f0f0;
+}
+header .button,
+#search,
+.item,
+.popup input[type="text"],
+input[type="text"]:focus,
+.popup .head,
+input[type="checkbox"] + label:before {
+    border: none !important;
+}
+.popup .foot button,
+.none {
+    background-color: #51ac05;
+}
+input[type="text"] {
+    caret-color: #51ac05;
+}
+.picIt * {
+    color: #000000 !important;
+}
+.popup,
+.aviso {
+    box-shadow: 0 0 32px rgba(0, 0, 0, 0.3);
+}
+#blur {
+    opacity: 0.2;
+}
