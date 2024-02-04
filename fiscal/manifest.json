@@ -19,9 +19,9 @@
     }
   ],
   "start_url": "index.html",
-  "background_color": "#f6f8fa",
+  "background_color": "#ffffff",
   "display": "standalone",
-  "theme_color": "#f6f8fa",
+  "theme_color": "#ffffff",
   "shortcuts": [
     {
       "name": "Editar lista de itens",
