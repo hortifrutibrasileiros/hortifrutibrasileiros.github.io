@@ -34,61 +34,78 @@ input[type="text"] {
     box-sizing: border-box;
     border: none;
 }
-div input[type="text"] {
-    width: 100%;
-    padding: 0;
-}
 input[type="text"]::placeholder {
     font-size: 14px;
+}
+body, header, section .list, section .shadow.foot, .popup, .aviso {
+    margin: 0 auto;
+    max-width: 640px;
+    left: 0;
+    right: 0;
 }
 
 /* STYLE */
 body {
-    margin: 0 auto;
     padding-top: 102px;
     padding-bottom: 72px;
-    max-width: 640px;
     overscroll-behavior-y: contain;
 }
 /* header */
 header {
     position: fixed;
     width: 100%;
-    top: 0;
-    left: 0;
     height: 60px;
     box-sizing: border-box;
     z-index: 2;
-    margin: auto;
-    left: 0;
-    right: 0;
-    max-width: 640px;
+    top: 0;
 }
 header > div {
     position: relative;
     height: 100%;
-    width: calc(100% - 32px);
+    width: calc(100% - 12px);
+    z-index: 1;
+}
+header #logo div {
+    position: absolute;
+    left: 0;
+    height: 65px;
+    width: 52px;
     margin: auto;
+    top: 0;
+    background-image: url(../image/icon.svg);
+    background-repeat: no-repeat;
+    background-position: center 18px;
+    background-size: 44px;
     z-index: 1;
 }
 header #logo {
     position: absolute;
-    left: 0;
+    left: 15px;
     height: 65px;
-    width: 50px;
+    width: 52px;
     margin: auto;
     top: 0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background-image: url(../image/icon.svg);
-    background-repeat: no-repeat;
-    background-position: center 16px;
-    background-size: 44px;
-    background-color: #ffffff;
+}
+header #logo:before {
+    position: absolute;
+    content: '';
+    width: 32px;
+    height: 32px;
+    background: #000;
+    border-radius: 50%;
+    bottom: 4px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    filter: blur(8px);
+}
+header svg {
+    position: absolute;
+    left: 0;
 }
 header #nav {
     position: absolute;
-    width: calc(100% - 44px - 12px);
+    width: calc(100% - 65px - 12px);
     height: 100%;
     right: 0;
 }
@@ -154,10 +171,6 @@ section .list {
     width: 100%;
     height: 40px;
     position: fixed;
-    margin: auto;
-    left: 0;
-    right: 0;
-    max-width: 640px;
     font-size: 12.5px;
     line-height: 40px;
     z-index: 1;
@@ -172,7 +185,7 @@ section .foot.list {
     font-size: 14px;
 }
 .foot.list .info {
-    width: calc(100% - 236px);
+    width: calc(50% - 48px);
     position: absolute;
     text-align: center;
     box-sizing: border-box;
@@ -191,7 +204,7 @@ section .foot.list {
     left: 0;
     right: 0;
     height: 48px;
-    width: 98px;
+    width: 102px;
     padding: 0;
 }
 section .total, .itens {
@@ -201,24 +214,20 @@ section .shadow.foot {
     position: fixed;
     width: 100%;
     height: 0;
-    left: 0;
     bottom: 0;
     box-shadow: 0px -4px 58px 20px rgba(0, 0, 0, 0.3);
-    margin: auto;
-    left: 0;
-    right: 0;
-    max-width: 640px;
 }
 /* section > item */
 .item {
     height: 42px;
     line-height: 42px;
-    border-bottom: 1px solid;
     font-size: 14px;
-    box-sizing: border-box;
     margin: 8px 0;
     border-radius: 12px;
     transition: 0.2s;
+}
+.item.active {
+    background-color: rgb(0 0 0 / 40%) !important;
 }
 .head.list > div {
     z-index: 1;
@@ -250,7 +259,6 @@ section .shadow.foot {
     top: 0;
     bottom: 0;
     width: 100%;
-    padding: 0 8px;
     height: 100%;
     font-size: 14px;
     background: none;
@@ -260,11 +268,7 @@ section .shadow.foot {
     transform: scale(1.7);
     height: 22px;
     border-radius: 9px;
-    border: 0.5px solid;
-    background: transparent;
-}
-.item .quant input {
-    border-right: none !important;
+    background: transparent !important;
 }
 .item .discr input {
     padding-left: 10px;
@@ -290,9 +294,6 @@ footer div {
 .popup {
     position: fixed;
     width: calc(100);
-    margin: auto;
-    left: 0;
-    right: 0;
     top: 0;
     height: fit-content;
     padding-top: 48px;
@@ -355,20 +356,20 @@ footer div {
     border-radius: 28px;
 }
 .popup input[type="text"] {
+    width: 100%;
     height: 38px;
     border-radius: 8px;
     margin: 6px 0;
     border: 1px solid;
     padding-left: 16px;
     font-size: 16px;
+.popup.share
+    input[type="text"] {
+    width: 100%;
+};
 }
 .popup.concluir input[type="text"], .popup.share .hidden input, input#discr {
     text-transform: capitalize;
-}
-input[type="text"]:focus {
-    border: 1px solid !important;
-    outline: none;
-    box-sizing: border-box;
 }
 .popup .foot {
     width: 100%;
@@ -479,22 +480,23 @@ button.concluir {
     left: 0;
     height: 52px;
     width: 52px;
-    bottom: 16px;
-    border-radius: 8px;
+    bottom: 12px;
+    border-radius: 50%;
     z-index: 2;
     font-size: 20px;
     box-sizing: border-box;
-    box-shadow: 0px -2px 8px 0px rgb(0 0 0 / 15%);
+    box-shadow: 2px -3px 9px 0px rgb(255 255 255 / 18%);
+    background: linear-gradient(45deg, #ffbf00, #51ac05, #628eff);
+}
+button.concluir.off {
+    color: #ffffff;
 }
 .aviso {
     position: fixed;
-    margin: auto;
     height: 48px;
     top: -100px;
     line-height: 48px;
-    left: 0;
     text-align: center;
-    right: 0;
     width: 100%;
     font-size: 14px;
     z-index: 2;

@@ -1,8 +1,10 @@
 body.dark-mode *,
-body.dark-mode button.concluir.off {
+body.dark-mode .quant input:focus,
+body.dark-mode .punit input:focus,
+body.dark-mode .block div,
+body.dark-mode .block div button {
     color: #ffffff;
 }
-body.dark-mode .content .block div,
 body.dark-mode .click:after {
     background-color: #ffffff !important;
 }
@@ -19,9 +21,12 @@ body.dark-mode #noItens {
 }
 body.dark-mode .head.list,
 body.dark-mode .popup .head,
-body.dark-mode .popup .foot,
 body.dark-mode #search button.i_close {
     border-color: #585858 !important;
+}
+body.dark-mode .content .block div,
+body.dark-mode .popup input[type="text"]:focus {
+    background-color: #565656;
 }
 body.dark-mode #search button.i_close,
 body.dark-mode .concluir.off,
@@ -55,27 +60,21 @@ body.dark-mode section,
 body.dark-mode input[type="text"]:focus,
 body.dark-mode .popup input[type="checkbox"] + label:before,
 body.dark-mode div#search,
-body.dark-mode .popup input[type="text"]:focus {
+body.dark-mode .popup .content {
     background-color: #212121;
-}
-body.dark-mode .popup .content,
-body.dark-mode .block div,
-body.dark-mode .block div button {
-    color: #212121 !important;
 }
 body.dark-mode header .button,
 body.dark-mode #search,
 body.dark-mode .item,
 body.dark-mode .popup input[type="text"],
 body.dark-mode input[type="text"]:focus,
+body.dark-mode .popup .foot,
 body.dark-mode input[type="checkbox"] + label:before {
     border: none !important;
 }
-body.dark-mode button.concluir,
 body.dark-mode .popup .foot button,
-body.dark-mode .none,
-body.dark-mode .item.active {
-    background-color: #51ac05;
+body.dark-mode .none {
+    background-color: #54a634;
 }
 body.dark-mode input[type="text"] {
     caret-color: #51ac05;
@@ -90,7 +89,12 @@ body.dark-mode .aviso {
 body.dark-mode #blur {
     opacity: 0.3;
 }
-
+body.dark-mode header .button {
+    background: rgb(255 255 255 / 16%);
+}
+body.dark-mode .item.active {
+    background-color: rgb(255 255 255 / 12%) !important;
+}
 
 
 
@@ -103,8 +107,7 @@ body.dark-mode #blur {
 .punit input:focus,
 .popup .content,
 .block div,
-.block div button,
-button.concluir.off {
+.block div button {
     color: #000000;
 }
 .popup .foot button,
@@ -131,7 +134,8 @@ input[type="text"]::placeholder,
 }
 div#search,
 .content .block div,
-.popup input[type="text"] {
+.popup input[type="text"],
+.popup input[type="checkbox"] + label:before {
     background-color: #e2e2e2;
 }
 .head.list,
@@ -146,8 +150,7 @@ div#search,
 .popup,
 input[type="text"]:focus,
 body,
-section,
-.popup input[type="checkbox"] + label:before {
+section {
     background-color: #ffffff;
 }
 header,
@@ -179,11 +182,8 @@ input[type="text"]:focus,
 input[type="checkbox"] + label:before {
     border: none !important;
 }
-button.concluir,
 .popup .foot button,
-.none,
-.item.active,
-.item.active input[type="text"]:focus {
+.none {
     background-color: #51ac05;
 }
 input[type="text"] {
