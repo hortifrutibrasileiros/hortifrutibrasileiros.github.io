@@ -2,13 +2,24 @@
 
 $(document).ready(function () {
 
+    var metas = 
+    '<meta name="description" content="' + description + '">'+
+    '<meta name="msapplication-TileColor" content="' + titleColor + '">' +
+    '<meta name="theme-color" content="' + titleColor + '">' +
+    '<title>' + title + '</title>';
+
+    $(metas).appendTo('head');
+    $('.picIt .header .data').html(data);
+
     function gerarDiv(item) {
-        var newDiv = $('<div class="item"></div>');
-        newDiv.append('<div><input type="text" inputmode="numeric" class="quant" maxlength="6" placeholder="+" /><a hidden>' + item.unitType + '</a></div>');
-        newDiv.append('<div class="discrim">' + item.discrim + '</div>');
-        newDiv.append('<div><input type="text" inputmode="numeric" class="punit" maxlength="6" value="' + item.punit + '" /></div>');
-        newDiv.append('<div class="valor">-</div>');
-        return newDiv;
+        var newItem = $('<div class="item"></div>');
+
+        newItem.append('<div class="discr">' + item.discr + '</div>');
+        newItem.append('<div class="quant"><input type="text" inputmode="numeric" maxlength="6" placeholder="' + item.unitType + '" /></div>');
+        newItem.append('<div class="punit"><input type="text" inputmode="numeric" maxlength="6" value="' + item.punit + '" /></div>');
+        newItem.append('<div class="valor">-</div>');
+
+        return newItem;
     }
 
     items.forEach(function (item) {
@@ -22,14 +33,24 @@ function formatCurrency(input) {
     input = (input / 100).toFixed(2);
     return input;
 }
-$('.punit').on('input', function() {
+
+$('#punit').on('input', function() {
+    this.value = formatCurrency(this.value);
+});
+$('section #list').on('input', '.punit input', function() {
     this.value = formatCurrency(this.value);
 });
 
+$('section #list').on('input', '.quant input', function() {
+    var valorAtual = $(this).val();
+    var novoValor = valorAtual.replace(/,/g, '.');
+    $(this).val(novoValor);
+  });
+
 function calcularResultado() {
     var $item = $(this).closest('.item');
-    var inputValue1 = $item.find('.quant').val().replace(',', '.');
-    var rawPixValue = $item.find('.punit').val();
+    var inputValue1 = $item.find('.quant input').val().replace(',', '.');
+    var rawPixValue = $item.find('.punit input').val();
     var inputValue2 = parseFloat(rawPixValue.trim().replace(',', '.')) || 0;
 
     var valor = parseFloat(inputValue1) * parseFloat(inputValue2);
@@ -43,33 +64,29 @@ function calcularResultado() {
     atualizarContagemItens();
 
     if (parseFloat(inputValue1) > 0) {
-        $item.css('background-color', '#eeeeee');
+        $item.addClass('active');
     } else {
-        $item.css('background-color', '');
+        $item.removeClass('active');
     }
 
     atualizarContagemItens();
 }
 
-
-
-
-
+$('.popup.share .block div, header .button, button.concluir, .popup .foot button').addClass('click');
 
 
 function exibirAviso(mensagem) {
-    var avisoDiv = $('<div class="aviso"><button class="icon i_warning"></button><span></span></div>');
-    $('body').append(avisoDiv);
+    var avisoDiv = $('.aviso');
     avisoDiv.find('span').text(mensagem);
-    avisoDiv.fadeIn();
+    avisoDiv.addClass('opened');
     setTimeout(function () {
-        avisoDiv.fadeOut();
+        avisoDiv.removeClass('opened');
     }, 3000);
 }
 
 function atualizarContagemItens() {
     var count = 0;
-    $('.quant').each(function () {
+    $('.quant input').each(function () {
         var inputValue = parseFloat($(this).val().replace(',', '.'));
         if (!isNaN(inputValue) && inputValue > 0) {
             count++;
@@ -100,14 +117,18 @@ $("button.concluir").click(function() {
     }
 });
 
-    $('.quant, .punit').on('input', calcularResultado);
+    $('.quant input, .punit input').on('input', calcularResultado);
 
+    $('.quant input, .punit input').on('input', function () {
+        atualizarContagemItens();
+    });
+    
     $('#search input').on('input', function () {
         var searchTerm = $(this).val().toLowerCase();
-        $('.discrim').each(function () {
-            var discrim = $(this).text().toLowerCase();
+        $('.discr').each(function () {
+            var discr = $(this).text().toLowerCase();
             var $item = $(this).closest('.item');
-            if (discrim.includes(searchTerm)) {
+            if (discr.includes(searchTerm)) {
                 $item.show();
             } else {
                 $item.hide();
@@ -115,21 +136,6 @@ $("button.concluir").click(function() {
         });
     });
 
-    $('#punit').on('input', function (event) {
-        let inputValue = event.target.value.replace(/\D/g, '');
-        let formattedValue = formatMoney(inputValue);
-        $(this).val(formattedValue);
-    });
-
-    function formatMoney(value) {
-        // Limita o valor entre 0.01 e 999.99 e formata como "0.00"
-        let amount = Math.min(Math.max(parseFloat(value) / 100, 0.00), 999.99);
-        return amount.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-
-    $('input#punit, .closela').click(function () {
-        $(this).val('');
-    });
 
     function atualizarTotal() {
         var total = 0;
@@ -142,7 +148,7 @@ $("button.concluir").click(function() {
         $('.total').text('R$' + total.toFixed(2).replace('.', ','));
     }
 
-    $('#discrim').on('input', function() {
+    $('#discr').on('input', function() {
         var valorInput = $(this).val();
         if(valorInput.length > 0){
             $('button.addItem').removeClass('off');
@@ -151,30 +157,29 @@ $("button.concluir").click(function() {
         }
     });
 
-
-
+    $('section #list').on('input', '.quant input, .punit input', calcularResultado);
 
     $(".addItem, #punit").on("click keypress", function (event) {
         if ((event.type === "click" && event.target.tagName !== "INPUT") ||
             (event.type === "keypress" && event.which === 13)) {
             var unitType = $("#unitType").val().toLowerCase();
-            var discr = $("#discrim").val();
-            var discrim = capitalizeFirst(discr);
+            var discr = $("#discr").val();
+            var discr = capitalizeFirst(discr);
             var punit = $("#punit").val();
-            if (discrim.trim() === "") {
+            if (discr.trim() === "") {
                 exibirAviso('Preencha o nome do produto!');
-                $("#discrim").focus();
+                $("#discr").focus();
                 return;
             }
             var newItem = {
                 unitType: unitType,
-                discrim: discrim,
+                discr: discr,
                 punit: punit
             };
-            var newDiv = gerarDiv(newItem);
-            $('section #list').append(newDiv);
-            $("#unitType, #discrim, #punit").val("");
-            newDiv.find('.quant, .punit').on('input', calcularResultado);
+
+            var newItem = gerarDiv(newItem);
+            $('section #list').append(newItem);
+            $("#unitType, #discr, #punit").val("");
 
             fecharPopup()
             atualizarContagemItens();
@@ -183,35 +188,11 @@ $("button.concluir").click(function() {
 
     $('.total').text('R$ 0,00');
 
-    $('.quant').on('input', function() {
+    $('.quant input').on('input', function() {
         var valorAtual = $(this).val();
         var novoValor = valorAtual.replace(/,/g, '.');
         $(this).val(novoValor);
       });
-
-    var scrollDistance = 16;
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > scrollDistance) {
-            $(".head.list").addClass("fixed");
-            $('body').css('margin-top', 'calc(60px + 16px + 38px)');
-        } else {
-            $(".head.list").removeClass("fixed");
-            $('body').css('margin-top', 'calc(60px + 16px)');
-        }
-
-
-            var windowHeight = $(window).height();
-            var documentHeight = $(document).height();
-            var scrollBottom = documentHeight - windowHeight - $(this).scrollTop();
-        
-            if (scrollBottom > scrollDistance) {
-                $(".foot.list").addClass("relative");
-                $('body').css('margin-bottom', 'calc(38px + 6px + 0px)');
-            } else {
-                $(".foot.list").removeClass("relative");
-                $('body').css('margin-bottom', 'calc(16px + 0px)');
-            }
-    });
 
     $(".button.refresh").click(function() {
         location.reload();
@@ -220,16 +201,20 @@ $("button.concluir").click(function() {
     $('#search input').on('input', function() {
         // Verifica se o input está vazio
         if ($(this).val() === '') {
-          $('button.clean').hide();
+          $('#search button.i_close').hide();
         } else {
-          $('button.clean').show();
+          $('#search button.i_close').show();
         }
       });
 
-      $('button.clean').on('click', function() {
+      $('#search button.i_close').on('click', function() {
         $('#search input').val('').focus();
         $(this).hide();
         $('.item').show();
+      });
+
+      $('.popup.share .foot button').on('click', function() {
+        fecharPopup();
       });
 
     function capitalize(str) {
@@ -238,7 +223,6 @@ $("button.concluir").click(function() {
       });
     }
     function capitalizeFirst(str) {
-        // Transforma a primeira letra em maiúscula e mantém as demais como estão
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
@@ -260,7 +244,7 @@ $("button.concluir").click(function() {
  
 
     $("header .add").on("click", function () {
-        abrirPopup(".popup.add", '.popup.add input#discrim');
+        abrirPopup(".popup.add", '.popup.add input#discr');
     });
     $("header .share").on("click", function () {
         abrirPopup(".popup.share");
@@ -287,18 +271,18 @@ $('.popup.share input').on('input', function(){
         $('#tabela tr:not(.head)').remove();
         $('.item').each(function () {
             var $item = $(this);
-            var inputValue1 = $item.find('.quant').val().replace('.', ',');
+            var inputValue1 = $item.find('.quant input').val().replace('.', ',');
     
             if (inputValue1.trim() !== "") {
-                var value1type = $item.find('a').text();
-                var discrim = $item.find('.discrim').text();
-                var inputValue2 = $item.find('.punit').val().replace('.', ',');
+                var discr = $item.find('.discr').text();
+                var value1type = $item.find('.quant input').attr('placeholder');
+                var inputValue2 = $item.find('.punit input').val().replace('.', ',');
                 var valor = $item.find('.valor').text().replace('.', ',');
     
                 var newRow = $('<tr></tr>');
     
                 newRow.append('<td class="left">' + inputValue1 + " " + value1type + '</td>');
-                newRow.append('<td class="left">' + discrim + '</td>');
+                newRow.append('<td class="left">' + discr + '</td>');
                 
                 if (inputValue2 !== valor) {
                     newRow.append('<td class="right">' + inputValue2 + '</td>');
@@ -326,28 +310,28 @@ $('.popup.share input').on('input', function(){
     }); // end
 
 
-    $("#sharePic").click(function() {
-    var nome = $(".popup.concluir input").val();
-    var nomeCliente = capitalize(nome);
-        if ($("button.concluir").hasClass('off')) {
-            exibirAviso('Nenhum item selecionado');
-        } else {
-            if (nomeCliente.trim() === "") {
-                $('.popup.share .hidden').fadeIn();
-                $('.popup.share .block, .none').hide();
-                $('.popup.share input').focus();
+    $(".sharePic").click(function() {
+        var nome = $(".popup.concluir input").val();
+        var nomeCliente = capitalize(nome);
+            if ($("button.concluir").hasClass('off')) {
+                exibirAviso('Nenhum item selecionado');
             } else {
-                pegarNome();
-                gerarTabela();
-                $('.picIt').addClass('share');
-                $('#qr-code-container').empty();
-                $('.pixPay span').html('');
-                sharePrint();
-                fecharPopup();
-                exibirAviso('Compartilhe sua imagem...');
+                if (nomeCliente.trim() === "") {
+                    $('.popup.share .hidden').fadeIn();
+                    $('.popup.share .block, .none').hide();
+                    $('.popup.share input').focus();
+                } else {
+                    pegarNome();
+                    gerarTabela();
+                    $('.picIt').addClass('share');
+                    $('#qr-code-container').empty();
+                    $('.pixPay span').html('');
+                    sharePrint();
+                    fecharPopup();
+                    exibirAviso('Compartilhe sua imagem...');
+                }
             }
-        }
-    });
+        });
 
     $(".finish_share, .popup.share input").on("click keypress", function (event) {
         if ((event.type === "click" && event.target.tagName !== "INPUT") ||
@@ -376,11 +360,8 @@ $('.popup.share input').on('input', function(){
 
 
 
-
-    var payload = "";
-// Bloco principal: Gera os dados necessários para o Payload PIX
-
-
+// GERAR PIX
+var payload = "";
 // Função principal para gerar o QR Code
 function generateQRCode() {
     var rawPixValue = $('.total').text();
@@ -403,6 +384,7 @@ function generateQRCode() {
     // Habilita o botão de copiar payload
     document.getElementById('copyCode').disabled = false;
 }
+
 
 // Função para construir o Payload PIX
 function buildPixPayload(pixKey, pixValue, destinatario, cidade) {
@@ -433,7 +415,6 @@ function displayQRCode(payload) {
         }
 }
 
-
 // Função para copiar o valor do payload para a área de transferência
 function copyPayloadToClipboard() {
     var tempInput = $("<input>");
@@ -443,12 +424,6 @@ function copyPayloadToClipboard() {
     document.execCommand("copy");
     tempInput.remove();
 }
-
-
-$('.popup.share .none').click(function() {
-    var linkWhatsApp = 'https://api.whatsapp.com/send/?text=' + encodeURIComponent(payload);
-    window.open(linkWhatsApp, '_blank');
-});
 
 // Função para calcular o CRC16
 function getCRC16(payload) {
@@ -467,11 +442,10 @@ function getCRC16(payload) {
             resultado &= 0xFFFF;
         }
     }
-
     return resultado;
 }
 
-$("#copyCode").click(function() {
+$(".copyCode").click(function() {
     var rawPixValue = $('.total').text();
     var pixValue = parseFloat(rawPixValue.replace('R$', '').trim().replace(',', '.')) || 0;
     if (pixValue === 0) {
@@ -483,30 +457,21 @@ $("#copyCode").click(function() {
         $('.popup.share .none').fadeIn();
         copyPayloadToClipboard();
     }
+        
+    $('.popup.share .none').click(function() {
+        var linkWhatsApp = 'https://api.whatsapp.com/send/?text=' + encodeURIComponent(payload);
+        window.open(linkWhatsApp, '_blank');
+    });
+
 }); // end
 
-$("#copyCode").click(function() {
-    var rawPixValue = $('.total').text();
-    var pixValue = parseFloat(rawPixValue.replace('R$', '').trim().replace(',', '.')) || 0;
-    if (pixValue === 0) {
-        exibirAviso('Não há valor neste cupom!');
-    } else {
-        pegarNome();
-        generateQRCode();
-        exibirAviso('Código PIX de R$ ' + pixValue + ' copiado!');
-        $('.popup.share .none').fadeIn();
-        copyPayloadToClipboard();
-    }
-}); // end
-
-
-
-
-
-
-
-
-
+const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+function toggleDarkMode() {
+    const darkMode = darkModeMediaQuery.matches;
+    $('body').toggleClass('dark-mode', darkMode);
+}
+toggleDarkMode();
+darkModeMediaQuery.addListener(toggleDarkMode);
 
 });
 
@@ -528,13 +493,8 @@ async function sharePrint() {
         };
 
         await navigator.share(shareData);
-        $('.sharePic').css('animation', 'moveButton 1s infinite');
     } catch (e) {
-        resultPara.text('Error: ' + e);
-              resultPara.fadeIn();
-        setTimeout(function () {
-            resultPara.fadeOut();
-        }, 30000);
+        exibirAviso('Erro:' + e);
     }
 }
 
@@ -564,3 +524,4 @@ window.onhashchange = function (e) {
 function href(web) {
     window.location.href = web;
 }
+
