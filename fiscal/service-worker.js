@@ -4,6 +4,7 @@ self.addEventListener('install', (event) => {
       return cache.addAll([
         'index.html',
         'image/icon.svg',
+        'image/icon_dark.svg',
         'style/main.css',
         'style/icons.css',
         'style/font.css',
