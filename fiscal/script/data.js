@@ -5,5 +5,5 @@ var data =
 
 var description = 'Serviço de Cupom Fiscal para administradores da loja física Brasileiros Hortifruti.';
 var titleColorLight = '#f6f6f6';
-var titleColorDark = '#212121';
+var titleColorDark = '#313131';
 var title = 'Brasileiros Hortifruti - ADM';
