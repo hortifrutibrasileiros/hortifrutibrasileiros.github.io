@@ -7,12 +7,14 @@ self.addEventListener('install', (event) => {
         'style/main.css',
         'style/icons.css',
         'style/font.css',
+        'style/themes.css',
         'script/jquery-3.6.4.min.js',
         'script/html2canvas.min.js',
         'script/qrcode.min.js',
-        'script/paypix.js',
+        'script/data.js',
         'script/list.js',
         'script/main.js',
+        'image/footer.svg',
         'font/BHicons/BHicons.woff2',
         'font/BHicons/BHicons.ttf',
         'font/BHicons/BHicons.svg',
@@ -22,6 +24,8 @@ self.addEventListener('install', (event) => {
         'font/UbuntuMono/4.woff2',
         'font/UbuntuMono/5.woff2',
         'font/UbuntuMono/6.woff2',
+        'service-worker.js',
+        'manifest.json'
       ]);
     })
   );

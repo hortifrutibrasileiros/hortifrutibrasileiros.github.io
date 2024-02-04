@@ -4,23 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content, maximum-scale=1.0, user-scalable=no">
-
-    <meta name="description" content="Serviço de Cupom Fiscal para administradores da loja física Brasileiros Hortifruti.">
     <meta name="author" content="thiagosoubra">
     <link rel="icon" href="image/favicon.ico" type="image/x-icon">
-    <meta name="msapplication-TileColor" content="#f6f8fa">
-    <meta name="theme-color" content="#f6f8fa">
-    <title>Brasileiros Hortifruti - ADM</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/themes.css">
     <link rel="stylesheet" href="style/icons.css">
     <link rel="stylesheet" href="style/font.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;800&display=swap" rel="stylesheet">
     <script src="script/jquery-3.6.4.min.js"></script>
     <script src="script/html2canvas.min.js"></script>
     <script src="script/qrcode.min.js"></script>
+    <script src="script/data.js"></script>
 </head>
 <body>
     <header>
@@ -30,7 +24,7 @@
                 <button class="button add icon i_plus" onclick="href('#popup');"></button>
                 <div id="search">
                     <button class="icon i_search"></button>
-                    <input type="text" placeholder="Localizar..." />
+                    <input type="text" placeholder="Localizar" />
                     <button hidden class="icon i_close"></button>
                 </div>
                 <button class="button share icon i_share" onclick="href('#popup');"></button>
@@ -39,21 +33,25 @@
         </div>
     </header>
 
-    <button class="concluir off icon i_print" onclick="href('#popup');"></button>
-    
     <section>
         <div class="head list">
-                <div>QUANT.</div>
-                <div class="left">DISCRIMINAÇÃO</div>
-                <div>P. UNIT.</div>
-                <div>TOTAL</div>
+            <div>
+                <div class="discr">DISCRIMINAÇÃO</div>
+                <div class="quant">QUANT.</div>
+                <div class="punit">P. UNIT.</div>
+                <div class="value">TOTAL</div>
+            </div>
         </div>
         <div id="list"></div>
-        <div class="foot list relative">
-                <div><span class="itens">0</span> ITENS</div>
-                <button></button>
-                <div>TOTAL <span class="total"></span></div>
+        <div class="foot list">
+                <div class="info left"><span class="itens">0</span> ITENS</div>
+                <div class="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="98px" height="48px"><path d="M98.000,48.000 L-0.000,48.000 L-0.000,14.1000 L-0.000,14.1000 L-0.000,-0.000 C8.284,-0.000 14.1000,6.716 14.1000,14.1000 L14.1000,25.000 C14.1000,33.284 21.716,40.000 29.1000,40.000 L68.000,40.000 C76.284,40.000 83.000,33.284 83.000,25.000 L83.000,14.1000 C83.000,6.716 89.716,-0.000 98.000,-0.000 L98.000,14.1000 L98.000,14.1000 L98.000,48.000 Z"/></svg>
+                    <button class="concluir off icon i_print" onclick="href('#popup');"></button>
+                </div>
+                <div class="info right">TOTAL <span class="total"></span></div>
         </div>
+        <div class="shadow foot"></div>
     </section>
 
     <div class="popup add">
@@ -61,11 +59,11 @@
             <button class="icon i_close"></button>
         </div>
         <div class="content">
-            <label>Discriminação</label><input type="text" id="discrim" placeholder="Nome do produto" maxlength="12" />
+            <label>Discriminação</label>
+            <input type="text" id="discr" placeholder="Nome do produto" maxlength="12" />
             <label class="left">Medida</label><label class="right">Valor unitário</label>
             <input type="text" id="unitType" placeholder="kg, unid, etc" maxlength="4" />
             <input type="text" placeholder="0,00" inputmode="numeric" id="punit" />
-            <input type="text" placeholder="total 0,00" inputmode="numeric" id="total" />
         </div>
         <div class="foot">
             <button class="addItem off icon i_check"></button>
@@ -78,8 +76,8 @@
         </div>
         <div class="content">
             <div class="block">
-                <div id="sharePic"><button class="icon i_share"></button><br>Compartilhar<br> o cupom</div>
-                <div id="copyCode"><button class="icon i_scan"></button><br>Copiar código<br> do PIX</div>
+                <div class="sharePic"><button class="icon i_share"></button><br>Compartilhar<br> o cupom</div>
+                <div class="copyCode" id="copyCode"><button class="icon i_scan"></button><br>Copiar código<br> do PIX</div>
             </div>
             <div hidden class="hidden">
                 <input type="text" placeholder="Nome do cliente" />
@@ -99,7 +97,7 @@
         </div>
             <div class="content">
                 <input type="text" placeholder="Não informado" />
-                <input type="checkbox" id="pixCheckbox"><label for="pixCheckbox">Pagamento por PIX</label>
+                <input type="checkbox" id="pixCheckbox"><label for="pixCheckbox">Incluir QRCode do PIX</label>
             </div>
             <div class="foot">
                 <button class="finish_print icon i_print"></button>
@@ -107,16 +105,13 @@
     </div>
 
     <div id="noItens">Nenhum resultado encontrado.</div>
+    <div class="aviso"><button class="icon i_warning"></button><span></span></div>
     <div hidden id="blur"></div>
 
     <div class="picIt">
         <div class="header">
             <div class="logo i_logo"></div>
-            <div class="data">
-                CNPJ› 37.085.118/0001-70<br>
-                FONE› (83) 9.8661-2160<br>
-                END.› CEASA, Campina Grande - Bloco B, Box 21
-            </div>
+            <div class="data"></div>
         </div>
         <table id="tabela">
             <tr class="head">
@@ -136,7 +131,6 @@
         </div>
     </div>
 
-    <script src="script/paypix.js"></script>
     <script src="script/list.js"></script>
     <script src="script/main.js"></script>
 <script>
