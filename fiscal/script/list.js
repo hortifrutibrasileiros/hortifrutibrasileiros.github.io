@@ -1,7 +1,8 @@
 var items = [
     { unitType: 'kg'  , discr: 'Abacate',      punit: '6.00' },
-    { unitType: 'unid', discr: 'Abacaxi',      punit: '5.00' },
+    { unitType: 'kg', discr: 'Maçã verde',   punit: '10.0' },
     { unitType: 'kg'  , discr: 'Acelga',       punit: '7.00' },
+    { unitType: 'kg'  , discr: 'Jiló',         punit: '5.00' },
     { unitType: 'palm', discr: 'Banana',       punit: '3.00' },
     { unitType: 'kg'  , discr: 'Barbante',     punit: '12.0' },
     { unitType: 'kg'  , discr: 'Abobrinha',    punit: '4.00' },
@@ -34,6 +35,7 @@ var items = [
     { unitType: 'kg'  , discr: 'Jerimum',      punit: '5.00' },
     { unitType: 'kg'  , discr: 'Jiló',         punit: '5.00' },
     { unitType: 'unid', discr: 'Laranja com.', punit: '0.70' },
+    { unitType: 'kg'  , discr: 'Tomate verm.',         punit: '5.00' },
     { unitType: 'unid', discr: 'Limão',        punit: '0.25' },
     { unitType: 'kg'  , discr: 'Macaxeira',    punit: '5.00' },
     { unitType: 'kg'  , discr: 'Mamão formo.', punit: '3.00' },
