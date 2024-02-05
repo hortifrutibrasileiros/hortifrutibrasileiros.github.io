@@ -432,7 +432,7 @@ function generateQRCode() {
 
     var pixKey = '+5583982145645'; // Altere para qualquer chave PIX: Celular, CPF, CNPJ ou chave aleatória.
     var destinatario = 'THIAGO SOUTO BRASILEIRO'; // Digite aqui o destinatário
-    var cidade = 'SAO PAULO'; // Digite aqui a cidade com máximo de 24 caracteres
+    var cidade = 'Brasil'; // Digite aqui a cidade com máximo de 24 caracteres
 
     // Construindo o Payload PIX a partir dos dados adicionados.
     payload = buildPixPayload(pixKey, pixValue, destinatario, cidade);
