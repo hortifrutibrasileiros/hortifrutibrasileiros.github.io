@@ -1,7 +1,7 @@
 var items = [
     { unitType: 'kg'  , discr: 'Abacate',      punit: '6.00' },
-    { unitType: 'kg', discr: 'Maçã verde',   punit: '10.0' },
     { unitType: 'kg'  , discr: 'Acelga',       punit: '7.00' },
+    { unitType: 'kg'  , discr: 'Maçã verde',   punit: '10.0' },
     { unitType: 'kg'  , discr: 'Jiló',         punit: '5.00' },
     { unitType: 'palm', discr: 'Banana',       punit: '3.00' },
     { unitType: 'kg'  , discr: 'Barbante',     punit: '12.0' },
